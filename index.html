@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DTrend Services – Android App Development</title>
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #060b14;
+      --surface: #0d1623;
+      --card: #111d2e;
+      --accent: #00e5ff;
+      --accent2: #7c4dff;
+      --accent3: #00e676;
+      --text: #e8f1ff;
+      --muted: #7a90b0;
+      --border: rgba(0,229,255,0.15);
+      --glow: 0 0 30px rgba(0,229,255,0.25);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Exo 2', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── GRID BACKGROUND ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 6%;
+      background: rgba(6,11,20,0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo {
+      font-family: 'Space Mono', monospace;
+      font-size: 1.3rem; font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 2px;
+      text-decoration: none;
+    }
+    .logo span { color: var(--text); }
+    nav ul { list-style: none; display: flex; gap: 36px; }
+    nav ul a {
+      color: var(--muted); text-decoration: none;
+      font-size: 0.88rem; font-weight: 600; letter-spacing: 1px;
+      text-transform: uppercase; transition: color 0.3s;
+    }
+    nav ul a:hover { color: var(--accent); }
+    .nav-cta {
+      background: var(--accent); color: #060b14 !important;
+      padding: 8px 20px; border-radius: 4px;
+      font-weight: 700 !important; transition: box-shadow 0.3s !important;
+    }
+    .nav-cta:hover { box-shadow: 0 0 20px rgba(0,229,255,0.5) !important; color: #060b14 !important; }
+
+    /* ── HERO ── */
+    #hero {
+      position: relative; min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 120px 6% 80px;
+      overflow: hidden;
+    }
+    .hero-glow {
+      position: absolute; width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(124,77,255,0.18) 0%, transparent 70%);
+      top: -100px; right: -100px; pointer-events: none;
+    }
+    .hero-glow2 {
+      position: absolute; width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(0,229,255,0.12) 0%, transparent 70%);
+      bottom: -50px; left: 10%; pointer-events: none;
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 700px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(0,229,255,0.08);
+      border: 1px solid var(--border);
+      padding: 6px 14px; border-radius: 20px;
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 28px;
+    }
+    .hero-badge::before {
+      content: ''; width: 8px; height: 8px; border-radius: 50%;
+      background: var(--accent3);
+      box-shadow: 0 0 10px var(--accent3);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+    h1 {
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 900; line-height: 1.05;
+      margin-bottom: 24px;
+    }
+    h1 .line-accent { color: var(--accent); }
+    h1 .line-grad {
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero-sub {
+      font-size: 1.1rem; color: var(--muted); line-height: 1.8;
+      max-width: 560px; margin-bottom: 40px;
+    }
+    .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--accent); color: #060b14;
+      padding: 14px 32px; border-radius: 6px;
+      font-weight: 800; font-size: 0.95rem; letter-spacing: 0.5px;
+      text-decoration: none; transition: all 0.3s;
+      box-shadow: 0 4px 30px rgba(0,229,255,0.3);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 40px rgba(0,229,255,0.5); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid var(--border); color: var(--text);
+      padding: 14px 32px; border-radius: 6px;
+      font-weight: 600; font-size: 0.95rem;
+      text-decoration: none; transition: all 0.3s;
+    }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+    .hero-stats {
+      display: flex; gap: 48px; margin-top: 64px;
+      padding-top: 40px; border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .stat-item {}
+    .stat-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 2rem; font-weight: 700;
+      color: var(--accent); line-height: 1;
+    }
+    .stat-label { font-size: 0.78rem; color: var(--muted); margin-top: 4px; text-transform: uppercase; letter-spacing: 1px; }
+
+    /* PHONE MOCKUP */
+    .hero-phone {
+      position: absolute; right: 6%; top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+    }
+    .phone-frame {
+      width: 240px; height: 480px;
+      background: var(--card);
+      border-radius: 36px;
+      border: 2px solid rgba(0,229,255,0.3);
+      box-shadow: var(--glow), 0 40px 80px rgba(0,0,0,0.6);
+      position: relative; overflow: hidden;
+      animation: float 4s ease-in-out infinite;
+    }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
+    .phone-notch {
+      position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
+      width: 80px; height: 22px; background: #060b14;
+      border-radius: 12px; z-index: 5;
+    }
+    .phone-screen {
+      position: absolute; inset: 8px;
+      border-radius: 30px; overflow: hidden;
+      background: linear-gradient(160deg, #0d1f3c 0%, #060b14 60%, #0d1623 100%);
+    }
+    .phone-app-bar {
+      background: rgba(0,229,255,0.1);
+      padding: 30px 14px 8px;
+      font-size: 0.6rem; color: var(--accent);
+      font-family: 'Space Mono', monospace;
+      border-bottom: 1px solid rgba(0,229,255,0.1);
+    }
+    .phone-app-content { padding: 10px 12px; }
+    .phone-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(0,229,255,0.1);
+      border-radius: 8px; padding: 8px 10px;
+      margin-bottom: 8px;
+    }
+    .phone-card-title { font-size: 0.55rem; color: var(--accent); font-weight: 700; margin-bottom: 3px; }
+    .phone-card-bar {
+      height: 4px; border-radius: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      margin-bottom: 2px;
+    }
+    .phone-card-bar2 {
+      height: 4px; border-radius: 2px;
+      background: rgba(255,255,255,0.1); width: 70%;
+    }
+    .phone-icons {
+      display: grid; grid-template-columns: repeat(4,1fr);
+      gap: 6px; padding: 12px;
+    }
+    .phone-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+    }
+
+    /* ── SECTIONS COMMON ── */
+    section { position: relative; z-index: 1; padding: 100px 6%; }
+    .section-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 14px;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 900; line-height: 1.1; margin-bottom: 16px;
+    }
+    .section-sub { color: var(--muted); font-size: 1rem; max-width: 540px; line-height: 1.8; }
+
+    /* ── SERVICES ── */
+    #services { background: var(--surface); }
+    .services-header { text-align: center; margin-bottom: 64px; }
+    .services-header .section-sub { margin: 0 auto; }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .service-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 36px 28px;
+      transition: all 0.35s;
+      position: relative; overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.35s;
+    }
+    .service-card:hover { transform: translateY(-6px); border-color: rgba(0,229,255,0.3); box-shadow: var(--glow); }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-icon {
+      font-size: 2.2rem; margin-bottom: 20px;
+      width: 56px; height: 56px;
+      background: rgba(0,229,255,0.08); border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .service-title { font-size: 1.15rem; font-weight: 800; margin-bottom: 10px; }
+    .service-desc { color: var(--muted); font-size: 0.9rem; line-height: 1.7; }
+
+    /* ── PROCESS ── */
+    #process {}
+    .process-wrap { display: flex; align-items: flex-start; gap: 60px; flex-wrap: wrap; }
+    .process-left { flex: 1; min-width: 280px; }
+    .process-right { flex: 1.4; min-width: 280px; }
+    .step-list { margin-top: 20px; }
+    .step-item {
+      display: flex; gap: 20px; padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+      transition: all 0.3s;
+    }
+    .step-item:last-child { border-bottom: none; }
+    .step-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem; color: var(--accent);
+      background: rgba(0,229,255,0.08);
+      border: 1px solid var(--border);
+      width: 40px; height: 40px; min-width: 40px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 6px; font-weight: 700;
+    }
+    .step-content h4 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+    .step-content p { color: var(--muted); font-size: 0.88rem; line-height: 1.7; }
+
+    .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .feature-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px 20px;
+    }
+    .feature-box h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 8px; }
+    .feature-box p { color: var(--muted); font-size: 0.82rem; line-height: 1.6; }
+
+    /* ── GLOBAL ── */
+    #global { background: var(--surface); text-align: center; }
+    .globe-wrap { max-width: 700px; margin: 0 auto; }
+    .regions {
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: 12px; margin-top: 40px;
+    }
+    .region-tag {
+      background: var(--card); border: 1px solid var(--border);
+      padding: 8px 18px; border-radius: 30px;
+      font-size: 0.82rem; color: var(--muted);
+      transition: all 0.3s;
+    }
+    .region-tag:hover { border-color: var(--accent); color: var(--accent); }
+    .region-tag span { margin-right: 6px; }
+
+    /* ── TECHNOLOGIES ── */
+    #tech {}
+    .tech-header { text-align: center; margin-bottom: 52px; }
+    .tech-track {
+      overflow: hidden;
+      mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+    }
+    .tech-inner {
+      display: flex; gap: 20px;
+      animation: scroll-tech 25s linear infinite;
+      width: max-content;
+    }
+    @keyframes scroll-tech {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .tech-pill {
+      display: flex; align-items: center; gap: 10px;
+      background: var(--card); border: 1px solid var(--border);
+      padding: 12px 22px; border-radius: 8px;
+      font-size: 0.88rem; font-weight: 600; white-space: nowrap;
+      color: var(--muted);
+    }
+    .tech-pill span { font-size: 1.2rem; }
+
+    /* ── CTA ── */
+    #cta {
+      background: linear-gradient(135deg, #0d1623 0%, #0f1a30 50%, #0d1623 100%);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+    }
+    .cta-inner { max-width: 600px; margin: 0 auto; }
+    .cta-inner h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; margin-bottom: 16px; }
+    .cta-inner p { color: var(--muted); margin-bottom: 36px; line-height: 1.8; }
+    .cta-form {
+      display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .cta-form input {
+      flex: 1; min-width: 220px; max-width: 320px;
+      background: var(--card); border: 1px solid var(--border);
+      color: var(--text); padding: 14px 18px;
+      border-radius: 6px; font-family: 'Exo 2', sans-serif;
+      font-size: 0.9rem; outline: none; transition: border 0.3s;
+    }
+    .cta-form input:focus { border-color: var(--accent); }
+    .cta-form input::placeholder { color: var(--muted); }
+    .cta-note { font-size: 0.78rem; color: var(--muted); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #030609;
+      padding: 60px 6% 30px;
+      border-top: 1px solid var(--border);
+    }
+    .footer-top {
+      display: flex; justify-content: space-between;
+      flex-wrap: wrap; gap: 40px; margin-bottom: 48px;
+    }
+    .footer-brand .logo { font-size: 1.2rem; display: block; margin-bottom: 14px; }
+    .footer-brand p { color: var(--muted); font-size: 0.85rem; max-width: 240px; line-height: 1.7; }
+    .footer-col h5 {
+      font-size: 0.78rem; text-transform: uppercase; letter-spacing: 2px;
+      color: var(--accent); margin-bottom: 16px; font-family: 'Space Mono', monospace;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 10px; }
+    .footer-col a { color: var(--muted); text-decoration: none; font-size: 0.88rem; transition: color 0.3s; }
+    .footer-col a:hover { color: var(--text); }
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: gap;
+      font-size: 0.8rem; color: var(--muted);
+    }
+    .footer-bottom a { color: var(--accent); text-decoration: none; }
+
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero-phone { display: none; }
+      nav ul { display: none; }
+      .process-wrap { flex-direction: column; }
+      .feature-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      section { padding: 70px 5%; }
+      .hero-stats { gap: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">D<span>TREND</span></a>
+  <ul>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#global">Global</a></li>
+    <li><a href="#tech">Tech</a></li>
+    <li><a href="#cta" class="nav-cta">Get Started</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-content">
+    <div class="hero-badge">✦ Android App Development Studio</div>
+    <h1>
+      We Build<br/>
+      <span class="line-accent">Android Apps</span><br/>
+      <span class="line-grad">For Everyone</span>
+    </h1>
+    <p class="hero-sub">
+      DTrend Services crafts powerful, user-first Android applications for the global market — from concept to deployment, for every corner of the world.
+    </p>
+    <div class="hero-btns">
+      <a href="#cta" class="btn-primary">🚀 Start Your App</a>
+      <a href="#services" class="btn-secondary">🔍 See What We Do</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">200+</div>
+        <div class="stat-label">Apps Delivered</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">50+</div>
+        <div class="stat-label">Countries Reached</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">98%</div>
+        <div class="stat-label">Client Satisfaction</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phone Mockup -->
+  <div class="hero-phone">
+    <div class="phone-frame">
+      <div class="phone-notch"></div>
+      <div class="phone-screen">
+        <div class="phone-app-bar">▪ DTrend App ✦ v2.4</div>
+        <div class="phone-app-content">
+          <div class="phone-card">
+            <div class="phone-card-title">▸ DASHBOARD</div>
+            <div class="phone-card-bar"></div>
+            <div class="phone-card-bar2"></div>
+          </div>
+          <div class="phone-card">
+            <div class="phone-card-title">▸ ANALYTICS</div>
+            <div class="phone-card-bar" style="width:85%;background:linear-gradient(90deg,#7c4dff,#00e676)"></div>
+            <div class="phone-card-bar2" style="width:55%"></div>
+          </div>
+          <div class="phone-card">
+            <div class="phone-card-title">▸ NOTIFICATIONS</div>
+            <div class="phone-card-bar" style="width:60%;background:linear-gradient(90deg,#00e676,#00e5ff)"></div>
+            <div class="phone-card-bar2" style="width:45%"></div>
+          </div>
+        </div>
+        <div class="phone-icons">
+          <div class="phone-icon" style="background:rgba(0,229,255,0.1)">📊</div>
+          <div class="phone-icon" style="background:rgba(124,77,255,0.1)">🔔</div>
+          <div class="phone-icon" style="background:rgba(0,230,118,0.1)">💬</div>
+          <div class="phone-icon" style="background:rgba(255,167,38,0.1)">⚙️</div>
+          <div class="phone-icon" style="background:rgba(0,229,255,0.1)">🌐</div>
+          <div class="phone-icon" style="background:rgba(124,77,255,0.1)">🔐</div>
+          <div class="phone-icon" style="background:rgba(0,230,118,0.1)">📍</div>
+          <div class="phone-icon" style="background:rgba(255,82,82,0.1)">❤️</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header fade-up">
+    <div class="section-label">// What We Build</div>
+    <h2 class="section-title">Android Apps For Every Need</h2>
+    <p class="section-sub">From consumer apps to enterprise solutions — we develop high-performance Android applications for the global public.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card fade-up">
+      <div class="service-icon">🛒</div>
+      <div class="service-title">E-Commerce Apps</div>
+      <p class="service-desc">Full-featured shopping apps with cart, payment gateway, real-time inventory, and multi-currency support for global buyers.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon">💼</div>
+      <div class="service-title">Business & Enterprise</div>
+      <p class="service-desc">CRM, ERP, field tools, and workflow automation apps that power your business operations from any device.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon">🎓</div>
+      <div class="service-title">Education & eLearning</div>
+      <p class="service-desc">Interactive learning platforms, quiz apps, live classrooms, and course management systems for students worldwide.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon">🏥</div>
+      <div class="service-title">Health & Fitness</div>
+      <p class="service-desc">Doctor booking, telemedicine, health tracking, diet planners, and mental wellness apps with privacy at the core.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon">🚀</div>
+      <div class="service-title">Social & Community</div>
+      <p class="service-desc">Scalable social networks, chat platforms, event apps, and community tools connecting people across the globe.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon">🔧</div>
+      <div class="service-title">Custom Solutions</div>
+      <p class="service-desc">Got a unique idea? We engineer fully custom Android applications from scratch, tailored exactly to your vision.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="process-wrap">
+    <div class="process-left fade-up">
+      <div class="section-label">// How We Work</div>
+      <h2 class="section-title">From Idea to<br/>Play Store</h2>
+      <p class="section-sub">A transparent, agile development process designed to deliver your app on time and on budget.</p>
+      <div class="step-list">
+        <div class="step-item">
+          <div class="step-num">01</div>
+          <div class="step-content">
+            <h4>Discovery & Planning</h4>
+            <p>We study your requirements, audience, and market to build a solid product roadmap and tech spec.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">02</div>
+          <div class="step-content">
+            <h4>UI/UX Design</h4>
+            <p>Beautiful wireframes and prototypes built around real user flows and global accessibility standards.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">03</div>
+          <div class="step-content">
+            <h4>Development & Testing</h4>
+            <p>Sprint-based Android development with continuous testing on real devices and global network conditions.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">04</div>
+          <div class="step-content">
+            <h4>Launch & Support</h4>
+            <p>Play Store submission, ASO optimization, post-launch monitoring, and ongoing maintenance.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="process-right fade-up">
+      <div class="feature-grid">
+        <div class="feature-box">
+          <h4>📱 Native Android</h4>
+          <p>Pure Kotlin & Java for maximum performance and seamless integration with Android hardware.</p>
+        </div>
+        <div class="feature-box">
+          <h4>🌍 Multi-Language</h4>
+          <p>Localization support for 30+ languages so your app speaks your users' language, literally.</p>
+        </div>
+        <div class="feature-box">
+          <h4>🔒 Security First</h4>
+          <p>End-to-end encryption, GDPR compliance, and secure authentication built in from day one.</p>
+        </div>
+        <div class="feature-box">
+          <h4>⚡ High Performance</h4>
+          <p>Optimized for low-end devices and slow networks so your app works everywhere in the world.</p>
+        </div>
+        <div class="feature-box">
+          <h4>📊 Analytics Built-in</h4>
+          <p>Real-time user analytics, crash reporting, and A/B testing baked into every app we deliver.</p>
+        </div>
+        <div class="feature-box">
+          <h4>🔄 API Integration</h4>
+          <p>RESTful APIs, Firebase, payment gateways, maps, social auth — we integrate it all seamlessly.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GLOBAL REACH -->
+<section id="global">
+  <div class="globe-wrap fade-up">
+    <div class="section-label">// Global Reach</div>
+    <h2 class="section-title">Built For the World,<br/>Delivered Anywhere</h2>
+    <p class="section-sub" style="margin:0 auto">Our apps are deployed and used by millions of people across every continent. We understand what global users need — speed, local language, offline capability, and familiar UX.</p>
+    <div class="regions">
+      <div class="region-tag"><span>🇮🇳</span>South Asia</div>
+      <div class="region-tag"><span>🇺🇸</span>North America</div>
+      <div class="region-tag"><span>🇬🇧</span>Europe</div>
+      <div class="region-tag"><span>🇧🇷</span>Latin America</div>
+      <div class="region-tag"><span>🇳🇬</span>Africa</div>
+      <div class="region-tag"><span>🇸🇦</span>Middle East</div>
+      <div class="region-tag"><span>🇯🇵</span>East Asia</div>
+      <div class="region-tag"><span>🇮🇩</span>Southeast Asia</div>
+      <div class="region-tag"><span>🇦🇺</span>Oceania</div>
+      <div class="region-tag"><span>🌐</span>+ More</div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section id="tech">
+  <div class="tech-header fade-up">
+    <div class="section-label">// Technology Stack</div>
+    <h2 class="section-title">Powered by Modern Tech</h2>
+  </div>
+  <div class="tech-track">
+    <div class="tech-inner" id="techInner">
+      <div class="tech-pill"><span>🤖</span> Android Studio</div>
+      <div class="tech-pill"><span>💜</span> Kotlin</div>
+      <div class="tech-pill"><span>☕</span> Java</div>
+      <div class="tech-pill"><span>🔥</span> Firebase</div>
+      <div class="tech-pill"><span>🗺️</span> Google Maps SDK</div>
+      <div class="tech-pill"><span>💳</span> Stripe / Razorpay</div>
+      <div class="tech-pill"><span>🌐</span> REST APIs</div>
+      <div class="tech-pill"><span>📦</span> Room DB</div>
+      <div class="tech-pill"><span>🏛️</span> MVVM Architecture</div>
+      <div class="tech-pill"><span>🧪</span> Espresso Testing</div>
+      <div class="tech-pill"><span>📡</span> Retrofit</div>
+      <div class="tech-pill"><span>🐳</span> Docker Backend</div>
+      <div class="tech-pill"><span>☁️</span> AWS / GCP</div>
+      <div class="tech-pill"><span>🔔</span> FCM Push Notifications</div>
+      <!-- Duplicate for loop -->
+      <div class="tech-pill"><span>🤖</span> Android Studio</div>
+      <div class="tech-pill"><span>💜</span> Kotlin</div>
+      <div class="tech-pill"><span>☕</span> Java</div>
+      <div class="tech-pill"><span>🔥</span> Firebase</div>
+      <div class="tech-pill"><span>🗺️</span> Google Maps SDK</div>
+      <div class="tech-pill"><span>💳</span> Stripe / Razorpay</div>
+      <div class="tech-pill"><span>🌐</span> REST APIs</div>
+      <div class="tech-pill"><span>📦</span> Room DB</div>
+      <div class="tech-pill"><span>🏛️</span> MVVM Architecture</div>
+      <div class="tech-pill"><span>🧪</span> Espresso Testing</div>
+      <div class="tech-pill"><span>📡</span> Retrofit</div>
+      <div class="tech-pill"><span>🐳</span> Docker Backend</div>
+      <div class="tech-pill"><span>☁️</span> AWS / GCP</div>
+      <div class="tech-pill"><span>🔔</span> FCM Push Notifications</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-inner fade-up">
+    <div class="section-label">// Let's Build Together</div>
+    <h2>Ready to Launch<br/><span style="color:var(--accent)">Your Android App?</span></h2>
+    <p>Share your email and we'll reach out within 24 hours to discuss your project — no commitment required.</p>
+    <div class="cta-form">
+      <input type="email" placeholder="your@email.com" id="emailInput"/>
+      <a href="mailto:hello@dtrendservices.com" class="btn-primary" onclick="handleCTA()">Get Free Quote →</a>
+    </div>
+    <p class="cta-note">✓ No spam. ✓ Free consultation. ✓ Global clients welcome.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="logo">D<span>TREND</span> SERVICES</a>
+      <p>We build world-class Android apps for the global public — fast, reliable, and beautifully designed.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="#">Android Development</a></li>
+        <li><a href="#">UI/UX Design</a></li>
+        <li><a href="#">API Integration</a></li>
+        <li><a href="#">Play Store Launch</a></li>
+        <li><a href="#">App Maintenance</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Our Work</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Connect</h5>
+      <ul>
+        <li><a href="mailto:hello@dtrendservices.com">📧 hello@dtrendservices.com</a></li>
+        <li><a href="#">💬 WhatsApp Us</a></li>
+        <li><a href="#">🐦 Twitter</a></li>
+        <li><a href="#">💼 LinkedIn</a></li>
+        <li><a href="#">📸 Instagram</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 DTrend Services. All rights reserved.</span>
+    <span>Made with 💙 for the global public · <a href="#">Privacy Policy</a> · <a href="#">Terms</a></span>
+  </div>
+</footer>
+
+<script>
+  // Intersection Observer for fade-up
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 100);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // CTA
+  function handleCTA() {
+    const val = document.getElementById('emailInput').value;
+    if (val) alert('Thanks! We\'ll reach out to ' + val + ' within 24 hours. 🚀');
+  }
+</script>
+</body>
+</html>
