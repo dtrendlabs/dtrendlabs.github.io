@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Apps – DTrend Services</title>
+  <meta name="description" content="Browse all Android apps by DTrend Services. Productivity, finance, health, utilities — find the perfect app for your needs." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="components.css" />
+  <link rel="stylesheet" href="animations.css" />
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<!-- NAVBAR -->
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+  <a href="index.html" class="navbar__logo"><span class="navbar__logo-mark">D</span><span class="navbar__logo-text">TREND</span></a>
+  <div class="navbar__nav">
+    <a href="index.html" class="navbar__link nav-underline">Home</a>
+    <a href="apps.html" class="navbar__link nav-underline active">Apps</a>
+    <a href="pricing.html" class="navbar__link nav-underline">Pricing</a>
+    <a href="about.html" class="navbar__link nav-underline">About</a>
+    <a href="contact.html" class="navbar__link nav-underline">Contact</a>
+  </div>
+  <div class="navbar__actions">
+    <button class="theme-toggle" aria-label="Toggle theme">🌙</button>
+  </div>
+  <button class="navbar__burger" aria-label="Open menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="navbar__mobile"><a href="index.html">Home</a><a href="apps.html">Apps</a><a href="pricing.html">Pricing</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="faq.html">FAQ</a></div>
+
+<main id="main">
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="page-header__inner">
+      <div class="breadcrumbs">
+        <a href="index.html">Home</a>
+        <span class="breadcrumbs__sep">›</span>
+        <span>Apps</span>
+      </div>
+      <span class="section-label hero-enter">// App Directory</span>
+      <h1 class="hero-enter hero-enter--delay-1">Our <span class="text-gradient">Apps</span></h1>
+      <p class="section-sub hero-enter hero-enter--delay-2">Explore our full collection of Android apps. Filter by category, search by name, and find your next favorite app.</p>
+    </div>
+  </div>
+
+  <!-- FILTER BAR -->
+  <section class="section" style="padding-top:var(--sp-4);padding-bottom:0">
+    <div style="max-width:var(--max-width);margin:0 auto">
+      <div class="filter-bar reveal">
+        <div class="filter-bar__search">
+          <span class="filter-bar__search-icon">🔍</span>
+          <input type="text" class="input" id="app-search" placeholder="Search apps..." aria-label="Search apps" />
+        </div>
+      </div>
+      <div class="filter-chips reveal" style="margin-top:var(--sp-2)">
+        <button class="filter-chip active" data-filter="all">All Apps</button>
+        <button class="filter-chip" data-filter="productivity">📋 Productivity</button>
+        <button class="filter-chip" data-filter="finance">💰 Finance</button>
+        <button class="filter-chip" data-filter="health">🏃 Health</button>
+        <button class="filter-chip" data-filter="utilities">🔧 Utilities</button>
+        <button class="filter-chip" data-filter="education">🎓 Education</button>
+        <button class="filter-chip" data-filter="social">💬 Social</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- APP GRID -->
+  <section class="section">
+    <div class="grid grid-auto stagger-children" style="max-width:var(--max-width);margin:0 auto">
+
+      <!-- TaskFlow Pro -->
+      <div class="app-card reveal" data-name="TaskFlow Pro" data-category="productivity" data-desc="smart task manager organize priorities deadlines">
+        <div class="app-card__header">
+          <div class="app-card__icon" style="background:linear-gradient(135deg,#6C5CE7,#a29bfe)">📋</div>
+          <div class="app-card__meta">
+            <div class="app-card__name">TaskFlow Pro</div>
+            <div class="app-card__tagline">Smart Task Manager</div>
+          </div>
+        </div>
+        <div class="app-card__body">
+          <p class="app-card__desc">Organize your life with intelligent task management. Set priorities, deadlines, and recurring tasks with a beautiful, minimal interface.</p>
+        </div>
+        <div class="app-card__footer">
+          <div class="stars">★★★★★</div>
+          <span class="app-card__platforms">📱</span>
+          <span class="app-card__price">Free</span>
+        </div>
+      </div>
+
+      <!-- MoneyWise -->
+      <div class="app-card reveal" data-name="MoneyWise" data-category="finance" data-desc="expense tracker budget spending multi-currency">
+        <div class="app-card__header">
+          <div class="app-card__icon" style="background:linear-gradient(135deg,#2ECC71,#27ae60)">💰</div>
+          <div class="app-card__meta">
+            <div class="app-card__name">MoneyWise</div>
+            <div class="app-card__tagline">Expense Tracker</div>
+          </div>
+        </div>
+        <div class="app-card__body">
+          <p class="app-card__desc">Track your spending, set budgets, and visualize where your money goes. Multi-currency support for global users.</p>
+        </div>
+        <div class="app-card__footer">
+          <div class="stars">★★★★★</div>
+          <span class="app-card__platforms">📱</span>
+          <span class="app-card__price">Freemium</span>
+        </div>
+      </div>
+
+      <!-- FitPulse -->
+      <div class="app-card reveal" data-name="FitPulse" data-category="health" data-desc="fitness workout step counter water reminder health">
+        <div class="app-card__header">
+          <div class="app-card__icon" style="background:linear-gradient(135deg,#FF6B6B,#ee5a24)">🏃</div>
+          <div class="app-card__meta">
+            <div class="app-card__name">FitPulse</div>
+            <div class="app-card__tagline">Fitness Companion</div>
+          </div>
+        </div>
+        <div class="app-card__body">
+          <p class="app-card__desc">Your personal fitness companion with workout tracking, step counter, water reminders, and health insights — all offline-ready.</p>
+        </div>
+        <div class="app-card__footer">
+          <div class="stars">★★★★☆</div>
+          <span class="app-card__platforms">📱</span>
+          <span class="app-card__price">Free</span>
+        </div>
+      </div>
+
+      <!-- VaultGuard -->
+      <div class="app-card reveal" data-name="VaultGuard" data-category="utilities" data-desc="secure notes passwords encryption biometric lock">
+        <div class="app-card__header">
+          <div class="app-card__icon" style="background:linear-gradient(135deg,#00D2FF,#0984e3)">🔒</div>
+          <div class="app-card__meta">
+            <div class="app-card__name">VaultGuard</div>
+            <div class="app-card__tagline">Secure Notes & Passwords</div>
+          </div>
+        </div>
+        <div class="app-card__body">
+          <p class="app-card__desc">Keep your sensitive data safe with military-grade encryption. Notes, passwords, and files — all protected with biometric lock.</p>
+        </div>
+        <div class="app-card__footer">
+          <div class="stars">★★★★★</div>
+          <span class="app-card__platforms">📱</span>
+          <span class="app-card__price">$2.99</span>
+        </div>
+      </div>
+
+      <!-- StudyBuddy -->
+      <div class="app-card reveal" data-name="StudyBuddy" data-category="education" data-desc="flashcards quiz spaced repetition learning study">
+        <div class="app-card__header">
+          <div class="app-card__icon" style="background:linear-gradient(135deg,#F39C12,#e67e22)">🎓</div>
+          <div class="app-card__meta">
+            <div class="app-card__name">StudyBuddy</div>
+            <div class="app-card__tagline">Smart Flashcards</div>
+          </div>
+        </div>
+        <div class="app-card__body">
+          <p class="app-card__desc">Master any subject with spaced repetition flashcards. Import decks, track progress, and study smarter — not harder.</p>
+        </div>
+        <div class="app-card__footer">
+          <div class="stars">★★★★★</div>
+          <span class="app-card__platforms">📱</span>
+          <span class="app-card__price">Free</span>
+        </div>
+      </div>
+
+      <!-- QuickNote -->
+      <div class="app-card reveal" data-name="QuickNote" data-category="productivity" data-desc="notes markdown checklist quick capture distraction-free">
+        <div class="app-card__header">
+          <div class="app-card__icon" style="background:linear-gradient(135deg,#fd79a8,#e84393)">📝</div>
+          <div class="app-card__meta">
+            <div class="app-card__name">QuickNote</div>
+            <div class="app-card__tagline">Distraction-Free Notes</div>
+          </div>
+        </div>
+        <div class="app-card__body">
+          <p class="app-card__desc">Capture thoughts instantly with markdown support, checklists, and a clean writing experience. Syncs across devices via cloud backup.</p>
+        </div>
+        <div class="app-card__footer">
+          <div class="stars">★★★★☆</div>
+          <span class="app-card__platforms">📱</span>
+          <span class="app-card__price">Freemium</span>
+        </div>
+      </div>
+
+      <!-- WeatherCast -->
+      <div class="app-card reveal" data-name="WeatherCast" data-category="utilities" data-desc="weather forecast temperature rain alerts climate">
+        <div class="app-card__header">
+          <div class="app-card__icon" style="background:linear-gradient(135deg,#74b9ff,#0984e3)">🌦️</div>
+          <div class="app-card__meta">
+            <div class="app-card__name">WeatherCast</div>
+            <div class="app-card__tagline">Hyper-Local Forecasts</div>
+          </div>
+        </div>
+        <div class="app-card__body">
+          <p class="app-card__desc">Accurate, hyper-local weather with hourly forecasts, rain alerts, and beautiful animated widgets for your home screen.</p>
+        </div>
+        <div class="app-card__footer">
+          <div class="stars">★★★★★</div>
+          <span class="app-card__platforms">📱</span>
+          <span class="app-card__price">Free</span>
+        </div>
+      </div>
+
+      <!-- ChatCircle -->
+      <div class="app-card reveal" data-name="ChatCircle" data-category="social" data-desc="messaging group chat privacy end-to-end encrypted">
+        <div class="app-card__header">
+          <div class="app-card__icon" style="background:linear-gradient(135deg,#00cec9,#00b894)">💬</div>
+          <div class="app-card__meta">
+            <div class="app-card__name">ChatCircle</div>
+            <div class="app-card__tagline">Private Messaging</div>
+          </div>
+        </div>
+        <div class="app-card__body">
+          <p class="app-card__desc">A privacy-first messaging app with end-to-end encryption, group chats, voice notes, and disappearing messages.</p>
+        </div>
+        <div class="app-card__footer">
+          <div class="stars">★★★★☆</div>
+          <span class="app-card__platforms">📱</span>
+          <span class="app-card__price">Free</span>
+        </div>
+      </div>
+
+      <!-- BudgetPlanner -->
+      <div class="app-card reveal" data-name="BudgetPlanner" data-category="finance" data-desc="budget planner savings goals investment portfolio tracker">
+        <div class="app-card__header">
+          <div class="app-card__icon" style="background:linear-gradient(135deg,#00b894,#55a3a4)">📊</div>
+          <div class="app-card__meta">
+            <div class="app-card__name">BudgetPlanner</div>
+            <div class="app-card__tagline">Financial Goals</div>
+          </div>
+        </div>
+        <div class="app-card__body">
+          <p class="app-card__desc">Set savings goals, plan monthly budgets, and track your progress with visual charts. Achieve financial freedom step by step.</p>
+        </div>
+        <div class="app-card__footer">
+          <div class="stars">★★★★★</div>
+          <span class="app-card__platforms">📱</span>
+          <span class="app-card__price">$1.99</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Empty State -->
+    <div class="apps-empty empty-state" style="display:none">
+      <div class="empty-state__icon">🔍</div>
+      <h3 class="empty-state__title">No apps found</h3>
+      <p class="empty-state__desc">Try adjusting your search or filter to find what you're looking for.</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer" role="contentinfo">
+  <div class="footer__grid">
+    <div class="footer__brand">
+      <a href="index.html" class="navbar__logo"><span class="navbar__logo-mark">D</span><span class="navbar__logo-text">TREND</span></a>
+      <p>Premium Android apps for users worldwide.</p>
+    </div>
+    <div class="footer__col">
+      <h5 class="footer__heading">Apps</h5>
+      <ul class="footer__links"><li><a href="apps.html">All Apps</a></li><li><a href="pricing.html">Pricing</a></li></ul>
+    </div>
+    <div class="footer__col">
+      <h5 class="footer__heading">Company</h5>
+      <ul class="footer__links"><li><a href="about.html">About</a></li><li><a href="faq.html">FAQ</a></li><li><a href="contact.html">Contact</a></li></ul>
+    </div>
+    <div class="footer__col">
+      <h5 class="footer__heading">Connect</h5>
+      <ul class="footer__links"><li><a href="mailto:hello@dtrendservices.com">📧 Email</a></li><li><a href="#">💬 WhatsApp</a></li><li><a href="#">🐦 Twitter</a></li></ul>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <span>© 2026 DTrend Services. All rights reserved.</span>
+    <span><a href="#">Privacy</a> · <a href="#">Terms</a></span>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>404 – Page Not Found – DTrend Services</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="components.css" />
+  <link rel="stylesheet" href="animations.css" />
+  <style>
+    .error-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: var(--sp-4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .error-code {
+      font-family: var(--font-display);
+      font-size: clamp(6rem, 20vw, 14rem);
+      font-weight: 800;
+      line-height: 1;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      opacity: 0.15;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -60%);
+      z-index: 0;
+      user-select: none;
+    }
+
+    .error-content {
+      position: relative;
+      z-index: 1;
+      max-width: 500px;
+    }
+
+    .error-emoji {
+      font-size: 4rem;
+      animation: error-bounce 2s ease-in-out infinite;
+      display: inline-block;
+      margin-bottom: var(--sp-3);
+    }
+
+    @keyframes error-bounce {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      25% { transform: translateY(-12px) rotate(-5deg); }
+      75% { transform: translateY(-8px) rotate(5deg); }
+    }
+
+    .error-links {
+      display: flex;
+      gap: var(--sp-2);
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: var(--sp-4);
+    }
+
+    .error-suggestions {
+      margin-top: var(--sp-6);
+      display: flex;
+      gap: var(--sp-2);
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .error-suggestion {
+      background: var(--color-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      padding: var(--sp-1) var(--sp-2);
+      font-size: var(--fs-small);
+      color: var(--color-text-muted);
+      text-decoration: none;
+      transition: all var(--transition-fast);
+    }
+
+    .error-suggestion:hover {
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR (minimal) -->
+<nav class="navbar" role="navigation">
+  <a href="index.html" class="navbar__logo"><span class="navbar__logo-mark">D</span><span class="navbar__logo-text">TREND</span></a>
+  <div class="navbar__actions">
+    <button class="theme-toggle" aria-label="Toggle theme">🌙</button>
+    <a href="index.html" class="btn btn-primary btn-sm">← Home</a>
+  </div>
+</nav>
+
+<main>
+  <div class="error-page">
+    <!-- Gradient Mesh -->
+    <div class="gradient-mesh">
+      <div class="gradient-mesh__blob"></div>
+      <div class="gradient-mesh__blob"></div>
+    </div>
+
+    <div class="error-code" aria-hidden="true">404</div>
+
+    <div class="error-content hero-enter">
+      <div class="error-emoji">🔍</div>
+      <h1 style="font-size:var(--fs-h2);margin-bottom:var(--sp-2)">Page Not Found</h1>
+      <p style="color:var(--color-text-secondary);line-height:1.8">
+        Looks like this page doesn't exist or has been moved. Don't worry — let's get you back on track.
+      </p>
+
+      <div class="error-links">
+        <a href="index.html" class="btn btn-primary">🏠 Go Home</a>
+        <a href="apps.html" class="btn btn-secondary">📱 Browse Apps</a>
+      </div>
+
+      <div class="error-suggestions">
+        <a href="apps.html" class="error-suggestion">Apps</a>
+        <a href="pricing.html" class="error-suggestion">Pricing</a>
+        <a href="about.html" class="error-suggestion">About</a>
+        <a href="faq.html" class="error-suggestion">FAQ</a>
+        <a href="contact.html" class="error-suggestion">Contact</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="main.js"></script>
+</body>
+</html>

@@ -3,746 +3,568 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DTrend Services – Android App Development</title>
+  <title>DTrend Services – Premium Android Apps for Everyone</title>
+  <meta name="description" content="DTrend Services designs and publishes premium Android apps. Explore our collection of powerful, beautiful apps — free and paid — built for users worldwide." />
   <meta name="google-site-verification" content="yepnvltr_1LK0rSzXfYZOBU0BRPnySfk_g0vSDw6D-w" />
-  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    :root {
-      --bg: #060b14;
-      --surface: #0d1623;
-      --card: #111d2e;
-      --accent: #00e5ff;
-      --accent2: #7c4dff;
-      --accent3: #00e676;
-      --text: #e8f1ff;
-      --muted: #7a90b0;
-      --border: rgba(0,229,255,0.15);
-      --glow: 0 0 30px rgba(0,229,255,0.25);
-    }
+  <!-- Open Graph -->
+  <meta property="og:title" content="DTrend Services – Premium Android Apps" />
+  <meta property="og:description" content="Explore our collection of powerful Android apps built for users worldwide." />
+  <meta property="og:type" content="website" />
 
-    html { scroll-behavior: smooth; }
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"/>
 
-    body {
-      font-family: 'Exo 2', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      overflow-x: hidden;
-    }
-
-    /* ── GRID BACKGROUND ── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
-      background-size: 50px 50px;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; width: 100%; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 18px 6%;
-      background: rgba(6,11,20,0.85);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border);
-    }
-    .logo {
-      font-family: 'Space Mono', monospace;
-      font-size: 1.3rem; font-weight: 700;
-      color: var(--accent);
-      letter-spacing: 2px;
-      text-decoration: none;
-    }
-    .logo span { color: var(--text); }
-    nav ul { list-style: none; display: flex; gap: 36px; }
-    nav ul a {
-      color: var(--muted); text-decoration: none;
-      font-size: 0.88rem; font-weight: 600; letter-spacing: 1px;
-      text-transform: uppercase; transition: color 0.3s;
-    }
-    nav ul a:hover { color: var(--accent); }
-    .nav-cta {
-      background: var(--accent); color: #060b14 !important;
-      padding: 8px 20px; border-radius: 4px;
-      font-weight: 700 !important; transition: box-shadow 0.3s !important;
-    }
-    .nav-cta:hover { box-shadow: 0 0 20px rgba(0,229,255,0.5) !important; color: #060b14 !important; }
-
-    /* ── HERO ── */
-    #hero {
-      position: relative; min-height: 100vh;
-      display: flex; align-items: center;
-      padding: 120px 6% 80px;
-      overflow: hidden;
-    }
-    .hero-glow {
-      position: absolute; width: 700px; height: 700px;
-      background: radial-gradient(circle, rgba(124,77,255,0.18) 0%, transparent 70%);
-      top: -100px; right: -100px; pointer-events: none;
-    }
-    .hero-glow2 {
-      position: absolute; width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(0,229,255,0.12) 0%, transparent 70%);
-      bottom: -50px; left: 10%; pointer-events: none;
-    }
-    .hero-content { position: relative; z-index: 2; max-width: 700px; }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(0,229,255,0.08);
-      border: 1px solid var(--border);
-      padding: 6px 14px; border-radius: 20px;
-      font-size: 0.78rem; font-weight: 700; letter-spacing: 2px;
-      text-transform: uppercase; color: var(--accent); margin-bottom: 28px;
-    }
-    .hero-badge::before {
-      content: ''; width: 8px; height: 8px; border-radius: 50%;
-      background: var(--accent3);
-      box-shadow: 0 0 10px var(--accent3);
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
-
-    h1 {
-      font-size: clamp(2.8rem, 6vw, 5rem);
-      font-weight: 900; line-height: 1.05;
-      margin-bottom: 24px;
-    }
-    h1 .line-accent { color: var(--accent); }
-    h1 .line-grad {
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    }
-    .hero-sub {
-      font-size: 1.1rem; color: var(--muted); line-height: 1.8;
-      max-width: 560px; margin-bottom: 40px;
-    }
-    .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--accent); color: #060b14;
-      padding: 14px 32px; border-radius: 6px;
-      font-weight: 800; font-size: 0.95rem; letter-spacing: 0.5px;
-      text-decoration: none; transition: all 0.3s;
-      box-shadow: 0 4px 30px rgba(0,229,255,0.3);
-    }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 40px rgba(0,229,255,0.5); }
-    .btn-secondary {
-      display: inline-flex; align-items: center; gap: 8px;
-      border: 1px solid var(--border); color: var(--text);
-      padding: 14px 32px; border-radius: 6px;
-      font-weight: 600; font-size: 0.95rem;
-      text-decoration: none; transition: all 0.3s;
-    }
-    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
-
-    .hero-stats {
-      display: flex; gap: 48px; margin-top: 64px;
-      padding-top: 40px; border-top: 1px solid var(--border);
-      flex-wrap: wrap;
-    }
-    .stat-item {}
-    .stat-num {
-      font-family: 'Space Mono', monospace;
-      font-size: 2rem; font-weight: 700;
-      color: var(--accent); line-height: 1;
-    }
-    .stat-label { font-size: 0.78rem; color: var(--muted); margin-top: 4px; text-transform: uppercase; letter-spacing: 1px; }
-
-    /* PHONE MOCKUP */
-    .hero-phone {
-      position: absolute; right: 6%; top: 50%;
-      transform: translateY(-50%);
-      z-index: 2;
-    }
-    .phone-frame {
-      width: 240px; height: 480px;
-      background: var(--card);
-      border-radius: 36px;
-      border: 2px solid rgba(0,229,255,0.3);
-      box-shadow: var(--glow), 0 40px 80px rgba(0,0,0,0.6);
-      position: relative; overflow: hidden;
-      animation: float 4s ease-in-out infinite;
-    }
-    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
-    .phone-notch {
-      position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
-      width: 80px; height: 22px; background: #060b14;
-      border-radius: 12px; z-index: 5;
-    }
-    .phone-screen {
-      position: absolute; inset: 8px;
-      border-radius: 30px; overflow: hidden;
-      background: linear-gradient(160deg, #0d1f3c 0%, #060b14 60%, #0d1623 100%);
-    }
-    .phone-app-bar {
-      background: rgba(0,229,255,0.1);
-      padding: 30px 14px 8px;
-      font-size: 0.6rem; color: var(--accent);
-      font-family: 'Space Mono', monospace;
-      border-bottom: 1px solid rgba(0,229,255,0.1);
-    }
-    .phone-app-content { padding: 10px 12px; }
-    .phone-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(0,229,255,0.1);
-      border-radius: 8px; padding: 8px 10px;
-      margin-bottom: 8px;
-    }
-    .phone-card-title { font-size: 0.55rem; color: var(--accent); font-weight: 700; margin-bottom: 3px; }
-    .phone-card-bar {
-      height: 4px; border-radius: 2px;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      margin-bottom: 2px;
-    }
-    .phone-card-bar2 {
-      height: 4px; border-radius: 2px;
-      background: rgba(255,255,255,0.1); width: 70%;
-    }
-    .phone-icons {
-      display: grid; grid-template-columns: repeat(4,1fr);
-      gap: 6px; padding: 12px;
-    }
-    .phone-icon {
-      width: 36px; height: 36px; border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1rem;
-    }
-
-    /* ── SECTIONS COMMON ── */
-    section { position: relative; z-index: 1; padding: 100px 6%; }
-    .section-label {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 14px;
-    }
-    .section-title {
-      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-      font-weight: 900; line-height: 1.1; margin-bottom: 16px;
-    }
-    .section-sub { color: var(--muted); font-size: 1rem; max-width: 540px; line-height: 1.8; }
-
-    /* ── SERVICES ── */
-    #services { background: var(--surface); }
-    .services-header { text-align: center; margin-bottom: 64px; }
-    .services-header .section-sub { margin: 0 auto; }
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-    }
-    .service-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 36px 28px;
-      transition: all 0.35s;
-      position: relative; overflow: hidden;
-    }
-    .service-card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      transform: scaleX(0); transform-origin: left;
-      transition: transform 0.35s;
-    }
-    .service-card:hover { transform: translateY(-6px); border-color: rgba(0,229,255,0.3); box-shadow: var(--glow); }
-    .service-card:hover::before { transform: scaleX(1); }
-    .service-icon {
-      font-size: 2.2rem; margin-bottom: 20px;
-      width: 56px; height: 56px;
-      background: rgba(0,229,255,0.08); border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .service-title { font-size: 1.15rem; font-weight: 800; margin-bottom: 10px; }
-    .service-desc { color: var(--muted); font-size: 0.9rem; line-height: 1.7; }
-
-    /* ── PROCESS ── */
-    #process {}
-    .process-wrap { display: flex; align-items: flex-start; gap: 60px; flex-wrap: wrap; }
-    .process-left { flex: 1; min-width: 280px; }
-    .process-right { flex: 1.4; min-width: 280px; }
-    .step-list { margin-top: 20px; }
-    .step-item {
-      display: flex; gap: 20px; padding: 24px 0;
-      border-bottom: 1px solid var(--border);
-      transition: all 0.3s;
-    }
-    .step-item:last-child { border-bottom: none; }
-    .step-num {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.75rem; color: var(--accent);
-      background: rgba(0,229,255,0.08);
-      border: 1px solid var(--border);
-      width: 40px; height: 40px; min-width: 40px;
-      display: flex; align-items: center; justify-content: center;
-      border-radius: 6px; font-weight: 700;
-    }
-    .step-content h4 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
-    .step-content p { color: var(--muted); font-size: 0.88rem; line-height: 1.7; }
-
-    .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .feature-box {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 24px 20px;
-    }
-    .feature-box h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 8px; }
-    .feature-box p { color: var(--muted); font-size: 0.82rem; line-height: 1.6; }
-
-    /* ── GLOBAL ── */
-    #global { background: var(--surface); text-align: center; }
-    .globe-wrap { max-width: 700px; margin: 0 auto; }
-    .regions {
-      display: flex; flex-wrap: wrap; justify-content: center;
-      gap: 12px; margin-top: 40px;
-    }
-    .region-tag {
-      background: var(--card); border: 1px solid var(--border);
-      padding: 8px 18px; border-radius: 30px;
-      font-size: 0.82rem; color: var(--muted);
-      transition: all 0.3s;
-    }
-    .region-tag:hover { border-color: var(--accent); color: var(--accent); }
-    .region-tag span { margin-right: 6px; }
-
-    /* ── TECHNOLOGIES ── */
-    #tech {}
-    .tech-header { text-align: center; margin-bottom: 52px; }
-    .tech-track {
-      overflow: hidden;
-      mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
-    }
-    .tech-inner {
-      display: flex; gap: 20px;
-      animation: scroll-tech 25s linear infinite;
-      width: max-content;
-    }
-    @keyframes scroll-tech {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-    .tech-pill {
-      display: flex; align-items: center; gap: 10px;
-      background: var(--card); border: 1px solid var(--border);
-      padding: 12px 22px; border-radius: 8px;
-      font-size: 0.88rem; font-weight: 600; white-space: nowrap;
-      color: var(--muted);
-    }
-    .tech-pill span { font-size: 1.2rem; }
-
-    /* ── CTA ── */
-    #cta {
-      background: linear-gradient(135deg, #0d1623 0%, #0f1a30 50%, #0d1623 100%);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      text-align: center;
-    }
-    .cta-inner { max-width: 600px; margin: 0 auto; }
-    .cta-inner h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; margin-bottom: 16px; }
-    .cta-inner p { color: var(--muted); margin-bottom: 36px; line-height: 1.8; }
-    .cta-form {
-      display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
-      margin-bottom: 16px;
-    }
-    .cta-form input {
-      flex: 1; min-width: 220px; max-width: 320px;
-      background: var(--card); border: 1px solid var(--border);
-      color: var(--text); padding: 14px 18px;
-      border-radius: 6px; font-family: 'Exo 2', sans-serif;
-      font-size: 0.9rem; outline: none; transition: border 0.3s;
-    }
-    .cta-form input:focus { border-color: var(--accent); }
-    .cta-form input::placeholder { color: var(--muted); }
-    .cta-note { font-size: 0.78rem; color: var(--muted); }
-
-    /* ── FOOTER ── */
-    footer {
-      background: #030609;
-      padding: 60px 6% 30px;
-      border-top: 1px solid var(--border);
-    }
-    .footer-top {
-      display: flex; justify-content: space-between;
-      flex-wrap: wrap; gap: 40px; margin-bottom: 48px;
-    }
-    .footer-brand .logo { font-size: 1.2rem; display: block; margin-bottom: 14px; }
-    .footer-brand p { color: var(--muted); font-size: 0.85rem; max-width: 240px; line-height: 1.7; }
-    .footer-col h5 {
-      font-size: 0.78rem; text-transform: uppercase; letter-spacing: 2px;
-      color: var(--accent); margin-bottom: 16px; font-family: 'Space Mono', monospace;
-    }
-    .footer-col ul { list-style: none; }
-    .footer-col li { margin-bottom: 10px; }
-    .footer-col a { color: var(--muted); text-decoration: none; font-size: 0.88rem; transition: color 0.3s; }
-    .footer-col a:hover { color: var(--text); }
-    .footer-bottom {
-      border-top: 1px solid var(--border);
-      padding-top: 24px;
-      display: flex; justify-content: space-between;
-      align-items: center; flex-wrap: gap;
-      font-size: 0.8rem; color: var(--muted);
-    }
-    .footer-bottom a { color: var(--accent); text-decoration: none; }
-
-    /* ── ANIMATIONS ── */
-    .fade-up {
-      opacity: 0; transform: translateY(30px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    .fade-up.visible { opacity: 1; transform: translateY(0); }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      .hero-phone { display: none; }
-      nav ul { display: none; }
-      .process-wrap { flex-direction: column; }
-      .feature-grid { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 600px) {
-      section { padding: 70px 5%; }
-      .hero-stats { gap: 28px; }
-    }
-  </style>
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="components.css" />
+  <link rel="stylesheet" href="animations.css" />
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <a href="#" class="logo">D<span>TREND</span></a>
-  <ul>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#process">Process</a></li>
-    <li><a href="#global">Global</a></li>
-    <li><a href="#tech">Tech</a></li>
-    <li><a href="#cta" class="nav-cta">Get Started</a></li>
-  </ul>
+<!-- Skip Link -->
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<!-- ══════ NAVBAR ══════ -->
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+  <a href="index.html" class="navbar__logo" aria-label="DTrend Services Home">
+    <span class="navbar__logo-mark">D</span><span class="navbar__logo-text">TREND</span>
+  </a>
+
+  <div class="navbar__nav">
+    <a href="#apps" class="navbar__link nav-underline">Apps</a>
+    <a href="#features" class="navbar__link nav-underline">Features</a>
+    <a href="#reviews" class="navbar__link nav-underline">Reviews</a>
+    <a href="pricing.html" class="navbar__link nav-underline">Pricing</a>
+    <a href="about.html" class="navbar__link nav-underline">About</a>
+  </div>
+
+  <div class="navbar__actions">
+    <button class="theme-toggle" aria-label="Toggle theme">🌙</button>
+    <a href="apps.html" class="btn btn-primary btn-sm navbar__cta">Explore Apps →</a>
+  </div>
+
+  <button class="navbar__burger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-glow"></div>
-  <div class="hero-glow2"></div>
-  <div class="hero-content">
-    <div class="hero-badge">✦ Android App Development Studio</div>
-    <h1>
-      We Build<br/>
-      <span class="line-accent">Android Apps</span><br/>
-      <span class="line-grad">For Everyone</span>
-    </h1>
-    <p class="hero-sub">
-      DTrend Services crafts powerful, user-first Android applications for the global market — from concept to deployment, for every corner of the world.
-    </p>
-    <div class="hero-btns">
-      <a href="#cta" class="btn-primary">🚀 Start Your App</a>
-      <a href="#services" class="btn-secondary">🔍 See What We Do</a>
+<!-- Mobile Menu -->
+<div class="navbar__mobile" role="dialog" aria-label="Mobile navigation">
+  <a href="#apps">Apps</a>
+  <a href="#features">Features</a>
+  <a href="#reviews">Reviews</a>
+  <a href="pricing.html">Pricing</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="faq.html">FAQ</a>
+</div>
+
+<!-- ══════ HERO ══════ -->
+<section class="hero" id="hero">
+  <!-- Gradient Mesh Background -->
+  <div class="gradient-mesh">
+    <div class="gradient-mesh__blob"></div>
+    <div class="gradient-mesh__blob"></div>
+    <div class="gradient-mesh__blob"></div>
+  </div>
+
+  <div class="hero__content">
+    <div class="hero__badge hero-enter hero-enter--delay-1">
+      <span class="hero__badge-dot"></span>
+      Apps Available Now
     </div>
-    <div class="hero-stats">
-      <div class="stat-item">
-        <div class="stat-num">200+</div>
-        <div class="stat-label">Apps Delivered</div>
+
+    <h1 class="hero-enter hero-enter--delay-2">
+      Beautiful Apps<br/>
+      <span class="text-gradient">Built for You</span>
+    </h1>
+
+    <p class="hero__sub hero-enter hero-enter--delay-3">
+      DTrend Services designs and publishes premium Android apps — powerful, intuitive, and available on the Play Store. Free to download or upgrade for the full experience.
+    </p>
+
+    <div class="hero__buttons hero-enter hero-enter--delay-4">
+      <a href="apps.html" class="btn btn-primary btn-lg">🚀 Browse Our Apps</a>
+      <a href="#features" class="btn btn-secondary btn-lg">✨ See What's Inside</a>
+    </div>
+
+    <div class="hero__stats hero-enter hero-enter--delay-5">
+      <div class="stat">
+        <div class="stat__number" data-count="15" data-suffix="+">0+</div>
+        <div class="stat__label">Apps Published</div>
       </div>
-      <div class="stat-item">
-        <div class="stat-num">50+</div>
-        <div class="stat-label">Countries Reached</div>
+      <div class="stat">
+        <div class="stat__number" data-count="50" data-suffix="K+">0K+</div>
+        <div class="stat__label">Downloads</div>
       </div>
-      <div class="stat-item">
-        <div class="stat-num">98%</div>
-        <div class="stat-label">Client Satisfaction</div>
+      <div class="stat">
+        <div class="stat__number" data-count="4.8" data-prefix="⭐ ">⭐ 0</div>
+        <div class="stat__label">Avg. Rating</div>
+      </div>
+      <div class="stat">
+        <div class="stat__number" data-count="30" data-suffix="+">0+</div>
+        <div class="stat__label">Countries</div>
       </div>
     </div>
   </div>
 
   <!-- Phone Mockup -->
-  <div class="hero-phone">
+  <div class="hero__phone">
     <div class="phone-frame">
       <div class="phone-notch"></div>
       <div class="phone-screen">
-        <div class="phone-app-bar">▪ DTrend App ✦ v2.4</div>
-        <div class="phone-app-content">
-          <div class="phone-card">
-            <div class="phone-card-title">▸ DASHBOARD</div>
-            <div class="phone-card-bar"></div>
-            <div class="phone-card-bar2"></div>
+        <div class="phone-status">
+          <span>DTrend ✦</span>
+          <span>v3.0</span>
+        </div>
+        <div class="phone-content">
+          <div class="phone-card-mock">
+            <div class="phone-card-mock__title">▸ DASHBOARD</div>
+            <div class="phone-bar phone-bar--primary" style="width:100%"></div>
+            <div class="phone-bar phone-bar--muted" style="width:70%"></div>
           </div>
-          <div class="phone-card">
-            <div class="phone-card-title">▸ ANALYTICS</div>
-            <div class="phone-card-bar" style="width:85%;background:linear-gradient(90deg,#7c4dff,#00e676)"></div>
-            <div class="phone-card-bar2" style="width:55%"></div>
+          <div class="phone-card-mock">
+            <div class="phone-card-mock__title">▸ ANALYTICS</div>
+            <div class="phone-bar phone-bar--primary" style="width:85%;background:linear-gradient(90deg,#6C5CE7,#2ECC71)"></div>
+            <div class="phone-bar phone-bar--muted" style="width:55%"></div>
           </div>
-          <div class="phone-card">
-            <div class="phone-card-title">▸ NOTIFICATIONS</div>
-            <div class="phone-card-bar" style="width:60%;background:linear-gradient(90deg,#00e676,#00e5ff)"></div>
-            <div class="phone-card-bar2" style="width:45%"></div>
+          <div class="phone-card-mock">
+            <div class="phone-card-mock__title">▸ ACTIVITY</div>
+            <div class="phone-bar phone-bar--primary" style="width:60%;background:linear-gradient(90deg,#00D2FF,#6C5CE7)"></div>
+            <div class="phone-bar phone-bar--muted" style="width:45%"></div>
           </div>
         </div>
-        <div class="phone-icons">
-          <div class="phone-icon" style="background:rgba(0,229,255,0.1)">📊</div>
-          <div class="phone-icon" style="background:rgba(124,77,255,0.1)">🔔</div>
-          <div class="phone-icon" style="background:rgba(0,230,118,0.1)">💬</div>
-          <div class="phone-icon" style="background:rgba(255,167,38,0.1)">⚙️</div>
-          <div class="phone-icon" style="background:rgba(0,229,255,0.1)">🌐</div>
-          <div class="phone-icon" style="background:rgba(124,77,255,0.1)">🔐</div>
-          <div class="phone-icon" style="background:rgba(0,230,118,0.1)">📍</div>
-          <div class="phone-icon" style="background:rgba(255,82,82,0.1)">❤️</div>
+        <div class="phone-app-grid">
+          <div class="phone-app-icon" style="background:rgba(108,92,231,0.15)">📊</div>
+          <div class="phone-app-icon" style="background:rgba(0,210,255,0.15)">🔔</div>
+          <div class="phone-app-icon" style="background:rgba(46,204,113,0.15)">💬</div>
+          <div class="phone-app-icon" style="background:rgba(255,107,107,0.15)">⚙️</div>
+          <div class="phone-app-icon" style="background:rgba(108,92,231,0.15)">🌐</div>
+          <div class="phone-app-icon" style="background:rgba(0,210,255,0.15)">🔐</div>
+          <div class="phone-app-icon" style="background:rgba(46,204,113,0.15)">📍</div>
+          <div class="phone-app-icon" style="background:rgba(255,107,107,0.15)">❤️</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SERVICES -->
-<section id="services">
-  <div class="services-header fade-up">
-    <div class="section-label">// What We Build</div>
-    <h2 class="section-title">Android Apps For Every Need</h2>
-    <p class="section-sub">From consumer apps to enterprise solutions — we develop high-performance Android applications for the global public.</p>
-  </div>
-  <div class="services-grid">
-    <div class="service-card fade-up">
-      <div class="service-icon">🛒</div>
-      <div class="service-title">E-Commerce Apps</div>
-      <p class="service-desc">Full-featured shopping apps with cart, payment gateway, real-time inventory, and multi-currency support for global buyers.</p>
-    </div>
-    <div class="service-card fade-up">
-      <div class="service-icon">💼</div>
-      <div class="service-title">Business & Enterprise</div>
-      <p class="service-desc">CRM, ERP, field tools, and workflow automation apps that power your business operations from any device.</p>
-    </div>
-    <div class="service-card fade-up">
-      <div class="service-icon">🎓</div>
-      <div class="service-title">Education & eLearning</div>
-      <p class="service-desc">Interactive learning platforms, quiz apps, live classrooms, and course management systems for students worldwide.</p>
-    </div>
-    <div class="service-card fade-up">
-      <div class="service-icon">🏥</div>
-      <div class="service-title">Health & Fitness</div>
-      <p class="service-desc">Doctor booking, telemedicine, health tracking, diet planners, and mental wellness apps with privacy at the core.</p>
-    </div>
-    <div class="service-card fade-up">
-      <div class="service-icon">🚀</div>
-      <div class="service-title">Social & Community</div>
-      <p class="service-desc">Scalable social networks, chat platforms, event apps, and community tools connecting people across the globe.</p>
-    </div>
-    <div class="service-card fade-up">
-      <div class="service-icon">🔧</div>
-      <div class="service-title">Custom Solutions</div>
-      <p class="service-desc">Got a unique idea? We engineer fully custom Android applications from scratch, tailored exactly to your vision.</p>
-    </div>
-  </div>
-</section>
+<main id="main">
 
-<!-- PROCESS -->
-<section id="process">
-  <div class="process-wrap">
-    <div class="process-left fade-up">
-      <div class="section-label">// How We Work</div>
-      <h2 class="section-title">From Idea to<br/>Play Store</h2>
-      <p class="section-sub">A transparent, agile development process designed to deliver your app on time and on budget.</p>
-      <div class="step-list">
-        <div class="step-item">
-          <div class="step-num">01</div>
-          <div class="step-content">
-            <h4>Discovery & Planning</h4>
-            <p>We study your requirements, audience, and market to build a solid product roadmap and tech spec.</p>
+  <!-- ══════ FEATURED APPS ══════ -->
+  <section id="apps" class="section section--surface">
+    <div class="section-header reveal">
+      <span class="section-label">// Our Apps</span>
+      <h2 class="section-title">Apps You'll Love Using</h2>
+      <p class="section-sub">Carefully crafted Android apps that solve real problems. Download from the Play Store — many are completely free.</p>
+    </div>
+
+    <div class="grid grid-auto stagger-children" style="max-width:var(--max-width);margin:0 auto">
+      <div class="app-card reveal" data-category="productivity">
+        <div class="app-card__header">
+          <div class="app-card__icon" style="background:linear-gradient(135deg,#6C5CE7,#a29bfe)">📋</div>
+          <div class="app-card__meta">
+            <div class="app-card__name">TaskFlow Pro</div>
+            <div class="app-card__tagline">Smart Task Manager</div>
           </div>
         </div>
-        <div class="step-item">
-          <div class="step-num">02</div>
-          <div class="step-content">
-            <h4>UI/UX Design</h4>
-            <p>Beautiful wireframes and prototypes built around real user flows and global accessibility standards.</p>
+        <div class="app-card__body">
+          <p class="app-card__desc">Organize your life with intelligent task management. Set priorities, deadlines, and recurring tasks with a beautiful, minimal interface.</p>
+        </div>
+        <div class="app-card__footer">
+          <div class="stars">★★★★★</div>
+          <span class="app-card__platforms">📱 Android</span>
+          <span class="app-card__price">Free</span>
+        </div>
+      </div>
+
+      <div class="app-card reveal" data-category="finance">
+        <div class="app-card__header">
+          <div class="app-card__icon" style="background:linear-gradient(135deg,#2ECC71,#27ae60)">💰</div>
+          <div class="app-card__meta">
+            <div class="app-card__name">MoneyWise</div>
+            <div class="app-card__tagline">Expense Tracker</div>
           </div>
         </div>
-        <div class="step-item">
-          <div class="step-num">03</div>
-          <div class="step-content">
-            <h4>Development & Testing</h4>
-            <p>Sprint-based Android development with continuous testing on real devices and global network conditions.</p>
+        <div class="app-card__body">
+          <p class="app-card__desc">Track your spending, set budgets, and visualize where your money goes. Multi-currency support for global users.</p>
+        </div>
+        <div class="app-card__footer">
+          <div class="stars">★★★★★</div>
+          <span class="app-card__platforms">📱 Android</span>
+          <span class="app-card__price">Freemium</span>
+        </div>
+      </div>
+
+      <div class="app-card reveal" data-category="health">
+        <div class="app-card__header">
+          <div class="app-card__icon" style="background:linear-gradient(135deg,#FF6B6B,#ee5a24)">🏃</div>
+          <div class="app-card__meta">
+            <div class="app-card__name">FitPulse</div>
+            <div class="app-card__tagline">Fitness Companion</div>
           </div>
         </div>
-        <div class="step-item">
-          <div class="step-num">04</div>
-          <div class="step-content">
-            <h4>Launch & Support</h4>
-            <p>Play Store submission, ASO optimization, post-launch monitoring, and ongoing maintenance.</p>
+        <div class="app-card__body">
+          <p class="app-card__desc">Your personal fitness companion with workout tracking, step counter, water reminders, and health insights — all offline-ready.</p>
+        </div>
+        <div class="app-card__footer">
+          <div class="stars">★★★★☆</div>
+          <span class="app-card__platforms">📱 Android</span>
+          <span class="app-card__price">Free</span>
+        </div>
+      </div>
+
+      <div class="app-card reveal" data-category="utilities">
+        <div class="app-card__header">
+          <div class="app-card__icon" style="background:linear-gradient(135deg,#00D2FF,#0984e3)">🔒</div>
+          <div class="app-card__meta">
+            <div class="app-card__name">VaultGuard</div>
+            <div class="app-card__tagline">Secure Notes & Passwords</div>
+          </div>
+        </div>
+        <div class="app-card__body">
+          <p class="app-card__desc">Keep your sensitive data safe with military-grade encryption. Notes, passwords, and files — all protected with biometric lock.</p>
+        </div>
+        <div class="app-card__footer">
+          <div class="stars">★★★★★</div>
+          <span class="app-card__platforms">📱 Android</span>
+          <span class="app-card__price">$2.99</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:var(--sp-6)">
+      <a href="apps.html" class="btn btn-secondary reveal">View All Apps →</a>
+    </div>
+  </section>
+
+  <!-- ══════ WHY CHOOSE US / FEATURES ══════ -->
+  <section id="features" class="section">
+    <div class="section-header reveal">
+      <span class="section-label">// Why Our Apps</span>
+      <h2 class="section-title">Built Different, <span class="text-gradient">Built Better</span></h2>
+      <p class="section-sub">Every app we publish follows the same principles: beautiful design, real performance, and genuine respect for your privacy.</p>
+    </div>
+
+    <div class="grid grid-auto stagger-children" style="max-width:var(--max-width);margin:0 auto">
+      <div class="feature-card reveal">
+        <div class="feature-card__icon">🎨</div>
+        <h3 class="feature-card__title">Beautiful Design</h3>
+        <p class="feature-card__desc">Every screen is carefully crafted with Material Design principles. Our apps look and feel native, polished, and premium.</p>
+      </div>
+
+      <div class="feature-card reveal">
+        <div class="feature-card__icon">⚡</div>
+        <h3 class="feature-card__title">Blazing Fast</h3>
+        <p class="feature-card__desc">Optimized for low-end devices and slow networks. Our apps start fast, run smoothly, and won't drain your battery.</p>
+      </div>
+
+      <div class="feature-card reveal">
+        <div class="feature-card__icon">🔒</div>
+        <h3 class="feature-card__title">Privacy First</h3>
+        <p class="feature-card__desc">We don't sell your data. End-to-end encryption where it matters, minimal permissions, and transparent privacy policies.</p>
+      </div>
+
+      <div class="feature-card reveal">
+        <div class="feature-card__icon">🌍</div>
+        <h3 class="feature-card__title">Works Everywhere</h3>
+        <p class="feature-card__desc">Multi-language support, offline capability, and region-aware features. Our apps work for users in 30+ countries.</p>
+      </div>
+
+      <div class="feature-card reveal">
+        <div class="feature-card__icon">📱</div>
+        <h3 class="feature-card__title">Regular Updates</h3>
+        <p class="feature-card__desc">We ship updates frequently — new features, bug fixes, and OS compatibility. Every app stays current and supported.</p>
+      </div>
+
+      <div class="feature-card reveal">
+        <div class="feature-card__icon">💬</div>
+        <h3 class="feature-card__title">Real Support</h3>
+        <p class="feature-card__desc">Actual humans respond to your feedback. Report a bug, suggest a feature, or just say hi — we read every message.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════ TECH STACK MARQUEE ══════ -->
+  <section class="section section--surface" style="padding-top:var(--sp-6);padding-bottom:var(--sp-6)">
+    <div class="section-header reveal" style="margin-bottom:var(--sp-4)">
+      <span class="section-label">// Powered By</span>
+      <h2 class="section-title" style="font-size:var(--fs-h3)">Modern Technology Under the Hood</h2>
+    </div>
+    <div class="marquee">
+      <div class="marquee__inner">
+        <div class="marquee__item"><span>💜</span> Kotlin</div>
+        <div class="marquee__item"><span>🤖</span> Android Studio</div>
+        <div class="marquee__item"><span>🔥</span> Firebase</div>
+        <div class="marquee__item"><span>🏛️</span> Jetpack Compose</div>
+        <div class="marquee__item"><span>📦</span> Room DB</div>
+        <div class="marquee__item"><span>🌐</span> Retrofit</div>
+        <div class="marquee__item"><span>☁️</span> Google Cloud</div>
+        <div class="marquee__item"><span>🔔</span> FCM Push</div>
+        <div class="marquee__item"><span>🗺️</span> Maps SDK</div>
+        <div class="marquee__item"><span>🧪</span> CI/CD Testing</div>
+        <div class="marquee__item"><span>🏛️</span> MVVM</div>
+        <div class="marquee__item"><span>💳</span> In-App Billing</div>
+        <!-- Duplicate for seamless loop -->
+        <div class="marquee__item"><span>💜</span> Kotlin</div>
+        <div class="marquee__item"><span>🤖</span> Android Studio</div>
+        <div class="marquee__item"><span>🔥</span> Firebase</div>
+        <div class="marquee__item"><span>🏛️</span> Jetpack Compose</div>
+        <div class="marquee__item"><span>📦</span> Room DB</div>
+        <div class="marquee__item"><span>🌐</span> Retrofit</div>
+        <div class="marquee__item"><span>☁️</span> Google Cloud</div>
+        <div class="marquee__item"><span>🔔</span> FCM Push</div>
+        <div class="marquee__item"><span>🗺️</span> Maps SDK</div>
+        <div class="marquee__item"><span>🧪</span> CI/CD Testing</div>
+        <div class="marquee__item"><span>🏛️</span> MVVM</div>
+        <div class="marquee__item"><span>💳</span> In-App Billing</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════ TESTIMONIALS / REVIEWS ══════ -->
+  <section id="reviews" class="section">
+    <div class="section-header reveal">
+      <span class="section-label">// User Reviews</span>
+      <h2 class="section-title">Loved by <span class="text-gradient">Real Users</span></h2>
+      <p class="section-sub">Don't just take our word for it — here's what our users say on the Play Store.</p>
+    </div>
+
+    <div class="marquee" style="margin-top:var(--sp-4)">
+      <div class="marquee__inner" style="animation-duration:40s;gap:var(--sp-3)">
+        <div class="testimonial-card">
+          <div class="testimonial-card__stars">★★★★★</div>
+          <p class="testimonial-card__text">"TaskFlow Pro completely changed how I organize my day. The interface is clean and everything just works. Best task app I've used."</p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">A</div>
+            <div>
+              <div class="testimonial-card__name">Arjun M.</div>
+              <div class="testimonial-card__role">Play Store Review</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-card__stars">★★★★★</div>
+          <p class="testimonial-card__text">"MoneyWise helped me save ₹15,000 last month by actually showing me where my money was going. The multi-currency feature is amazing."</p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">P</div>
+            <div>
+              <div class="testimonial-card__name">Priya K.</div>
+              <div class="testimonial-card__role">Play Store Review</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-card__stars">★★★★★</div>
+          <p class="testimonial-card__text">"VaultGuard gives me peace of mind. Biometric login, encrypted notes — this is how security apps should be built. Worth every penny."</p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">R</div>
+            <div>
+              <div class="testimonial-card__name">Rahul S.</div>
+              <div class="testimonial-card__role">Play Store Review</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-card__stars">★★★★☆</div>
+          <p class="testimonial-card__text">"FitPulse works offline which is a lifesaver at my gym. Step counter is accurate and the water reminder actually helped me drink more."</p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">S</div>
+            <div>
+              <div class="testimonial-card__name">Sara L.</div>
+              <div class="testimonial-card__role">Play Store Review</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-card__stars">★★★★★</div>
+          <p class="testimonial-card__text">"I've tried dozens of expense trackers. MoneyWise is the only one that didn't feel cluttered. Simple, powerful, and respects my privacy."</p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">D</div>
+            <div>
+              <div class="testimonial-card__name">David T.</div>
+              <div class="testimonial-card__role">Play Store Review</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Duplicates for loop -->
+        <div class="testimonial-card">
+          <div class="testimonial-card__stars">★★★★★</div>
+          <p class="testimonial-card__text">"TaskFlow Pro completely changed how I organize my day. The interface is clean and everything just works. Best task app I've used."</p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">A</div>
+            <div>
+              <div class="testimonial-card__name">Arjun M.</div>
+              <div class="testimonial-card__role">Play Store Review</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-card__stars">★★★★★</div>
+          <p class="testimonial-card__text">"MoneyWise helped me save ₹15,000 last month by actually showing me where my money was going. The multi-currency feature is amazing."</p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">P</div>
+            <div>
+              <div class="testimonial-card__name">Priya K.</div>
+              <div class="testimonial-card__role">Play Store Review</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-card__stars">★★★★★</div>
+          <p class="testimonial-card__text">"VaultGuard gives me peace of mind. Biometric login, encrypted notes — this is how security apps should be built. Worth every penny."</p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">R</div>
+            <div>
+              <div class="testimonial-card__name">Rahul S.</div>
+              <div class="testimonial-card__role">Play Store Review</div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="process-right fade-up">
-      <div class="feature-grid">
-        <div class="feature-box">
-          <h4>📱 Native Android</h4>
-          <p>Pure Kotlin & Java for maximum performance and seamless integration with Android hardware.</p>
+  </section>
+
+  <!-- ══════ GLOBAL REACH ══════ -->
+  <section class="section section--surface">
+    <div class="section-header reveal">
+      <span class="section-label">// Global Reach</span>
+      <h2 class="section-title">Used Across the <span class="text-gradient">World</span></h2>
+      <p class="section-sub">Our apps serve users on every continent. Built with localization, offline capability, and performance in mind.</p>
+    </div>
+
+    <div class="filter-chips reveal" style="justify-content:center;gap:var(--sp-2);max-width:800px;margin:0 auto">
+      <span class="filter-chip" style="cursor:default">🇮🇳 South Asia</span>
+      <span class="filter-chip" style="cursor:default">🇺🇸 North America</span>
+      <span class="filter-chip" style="cursor:default">🇬🇧 Europe</span>
+      <span class="filter-chip" style="cursor:default">🇧🇷 Latin America</span>
+      <span class="filter-chip" style="cursor:default">🇳🇬 Africa</span>
+      <span class="filter-chip" style="cursor:default">🇸🇦 Middle East</span>
+      <span class="filter-chip" style="cursor:default">🇯🇵 East Asia</span>
+      <span class="filter-chip" style="cursor:default">🇮🇩 Southeast Asia</span>
+      <span class="filter-chip" style="cursor:default">🇦🇺 Oceania</span>
+      <span class="filter-chip" style="cursor:default">🌐 + More</span>
+    </div>
+  </section>
+
+  <!-- ══════ CTA / NEWSLETTER ══════ -->
+  <section class="section cta-section" id="cta">
+    <div class="cta-section__inner reveal">
+      <span class="section-label">// Stay Updated</span>
+      <h2 class="section-title">Never Miss a <span class="text-gradient">New App</span></h2>
+      <p style="color:var(--color-text-secondary);margin-bottom:var(--sp-3)">Get notified when we launch new apps, release major updates, or run special promotions. No spam — ever.</p>
+
+      <div class="cta-section__form">
+        <input type="email" class="input" placeholder="your@email.com" id="emailInput" aria-label="Email address" />
+        <button class="btn btn-primary" onclick="handleNewsletter()">Subscribe →</button>
+      </div>
+      <p class="cta-section__note">✓ Free forever · ✓ Unsubscribe anytime · ✓ No spam</p>
+    </div>
+  </section>
+
+  <!-- ══════ STORE BADGES ══════ -->
+  <section class="section" style="padding-top:var(--sp-6);padding-bottom:var(--sp-6);text-align:center">
+    <p style="color:var(--color-text-muted);font-size:var(--fs-small);margin-bottom:var(--sp-3)">Available on</p>
+    <div style="display:flex;gap:var(--sp-2);justify-content:center;flex-wrap:wrap">
+      <a href="#" class="store-badge store-badge-shimmer bounce-in">
+        <span style="font-size:1.4rem">▶️</span>
+        <div>
+          <div style="font-size:0.65rem;opacity:0.7">GET IT ON</div>
+          <div style="font-weight:700;font-size:0.9rem">Google Play</div>
         </div>
-        <div class="feature-box">
-          <h4>🌍 Multi-Language</h4>
-          <p>Localization support for 30+ languages so your app speaks your users' language, literally.</p>
-        </div>
-        <div class="feature-box">
-          <h4>🔒 Security First</h4>
-          <p>End-to-end encryption, GDPR compliance, and secure authentication built in from day one.</p>
-        </div>
-        <div class="feature-box">
-          <h4>⚡ High Performance</h4>
-          <p>Optimized for low-end devices and slow networks so your app works everywhere in the world.</p>
-        </div>
-        <div class="feature-box">
-          <h4>📊 Analytics Built-in</h4>
-          <p>Real-time user analytics, crash reporting, and A/B testing baked into every app we deliver.</p>
-        </div>
-        <div class="feature-box">
-          <h4>🔄 API Integration</h4>
-          <p>RESTful APIs, Firebase, payment gateways, maps, social auth — we integrate it all seamlessly.</p>
-        </div>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ══════ FOOTER ══════ -->
+<footer class="footer" role="contentinfo">
+  <div class="footer__grid">
+    <div class="footer__brand">
+      <a href="index.html" class="navbar__logo">
+        <span class="navbar__logo-mark">D</span><span class="navbar__logo-text">TREND</span>
+      </a>
+      <p>We design and publish premium Android apps for users worldwide — fast, reliable, and beautifully designed.</p>
+      <div class="footer__store-badges">
+        <a href="#" class="store-badge store-badge-shimmer" style="font-size:var(--fs-xs)">
+          <span>▶️</span> Google Play
+        </a>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- GLOBAL REACH -->
-<section id="global">
-  <div class="globe-wrap fade-up">
-    <div class="section-label">// Global Reach</div>
-    <h2 class="section-title">Built For the World,<br/>Delivered Anywhere</h2>
-    <p class="section-sub" style="margin:0 auto">Our apps are deployed and used by millions of people across every continent. We understand what global users need — speed, local language, offline capability, and familiar UX.</p>
-    <div class="regions">
-      <div class="region-tag"><span>🇮🇳</span>South Asia</div>
-      <div class="region-tag"><span>🇺🇸</span>North America</div>
-      <div class="region-tag"><span>🇬🇧</span>Europe</div>
-      <div class="region-tag"><span>🇧🇷</span>Latin America</div>
-      <div class="region-tag"><span>🇳🇬</span>Africa</div>
-      <div class="region-tag"><span>🇸🇦</span>Middle East</div>
-      <div class="region-tag"><span>🇯🇵</span>East Asia</div>
-      <div class="region-tag"><span>🇮🇩</span>Southeast Asia</div>
-      <div class="region-tag"><span>🇦🇺</span>Oceania</div>
-      <div class="region-tag"><span>🌐</span>+ More</div>
-    </div>
-  </div>
-</section>
-
-<!-- TECH STACK -->
-<section id="tech">
-  <div class="tech-header fade-up">
-    <div class="section-label">// Technology Stack</div>
-    <h2 class="section-title">Powered by Modern Tech</h2>
-  </div>
-  <div class="tech-track">
-    <div class="tech-inner" id="techInner">
-      <div class="tech-pill"><span>🤖</span> Android Studio</div>
-      <div class="tech-pill"><span>💜</span> Kotlin</div>
-      <div class="tech-pill"><span>☕</span> Java</div>
-      <div class="tech-pill"><span>🔥</span> Firebase</div>
-      <div class="tech-pill"><span>🗺️</span> Google Maps SDK</div>
-      <div class="tech-pill"><span>💳</span> Stripe / Razorpay</div>
-      <div class="tech-pill"><span>🌐</span> REST APIs</div>
-      <div class="tech-pill"><span>📦</span> Room DB</div>
-      <div class="tech-pill"><span>🏛️</span> MVVM Architecture</div>
-      <div class="tech-pill"><span>🧪</span> Espresso Testing</div>
-      <div class="tech-pill"><span>📡</span> Retrofit</div>
-      <div class="tech-pill"><span>🐳</span> Docker Backend</div>
-      <div class="tech-pill"><span>☁️</span> AWS / GCP</div>
-      <div class="tech-pill"><span>🔔</span> FCM Push Notifications</div>
-      <!-- Duplicate for loop -->
-      <div class="tech-pill"><span>🤖</span> Android Studio</div>
-      <div class="tech-pill"><span>💜</span> Kotlin</div>
-      <div class="tech-pill"><span>☕</span> Java</div>
-      <div class="tech-pill"><span>🔥</span> Firebase</div>
-      <div class="tech-pill"><span>🗺️</span> Google Maps SDK</div>
-      <div class="tech-pill"><span>💳</span> Stripe / Razorpay</div>
-      <div class="tech-pill"><span>🌐</span> REST APIs</div>
-      <div class="tech-pill"><span>📦</span> Room DB</div>
-      <div class="tech-pill"><span>🏛️</span> MVVM Architecture</div>
-      <div class="tech-pill"><span>🧪</span> Espresso Testing</div>
-      <div class="tech-pill"><span>📡</span> Retrofit</div>
-      <div class="tech-pill"><span>🐳</span> Docker Backend</div>
-      <div class="tech-pill"><span>☁️</span> AWS / GCP</div>
-      <div class="tech-pill"><span>🔔</span> FCM Push Notifications</div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section id="cta">
-  <div class="cta-inner fade-up">
-    <div class="section-label">// Let's Build Together</div>
-    <h2>Ready to Launch<br/><span style="color:var(--accent)">Your Android App?</span></h2>
-    <p>Share your email and we'll reach out within 24 hours to discuss your project — no commitment required.</p>
-    <div class="cta-form">
-      <input type="email" placeholder="your@email.com" id="emailInput"/>
-      <a href="/cdn-cgi/l/email-protection#422a272e2e2d02263630272c26312730342b2127316c212d2f" class="btn-primary" onclick="handleCTA()">Get Free Quote →</a>
-    </div>
-    <p class="cta-note">✓ No spam. ✓ Free consultation. ✓ Global clients welcome.</p>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-top">
-    <div class="footer-brand">
-      <a href="#" class="logo">D<span>TREND</span> SERVICES</a>
-      <p>We build world-class Android apps for the global public — fast, reliable, and beautifully designed.</p>
-    </div>
-    <div class="footer-col">
-      <h5>Services</h5>
-      <ul>
-        <li><a href="#">Android Development</a></li>
-        <li><a href="#">UI/UX Design</a></li>
-        <li><a href="#">API Integration</a></li>
-        <li><a href="#">Play Store Launch</a></li>
-        <li><a href="#">App Maintenance</a></li>
+    <div class="footer__col">
+      <h5 class="footer__heading">Apps</h5>
+      <ul class="footer__links">
+        <li><a href="apps.html">All Apps</a></li>
+        <li><a href="apps.html#productivity">Productivity</a></li>
+        <li><a href="apps.html#finance">Finance</a></li>
+        <li><a href="apps.html#health">Health & Fitness</a></li>
+        <li><a href="apps.html#utilities">Utilities</a></li>
       </ul>
     </div>
-    <div class="footer-col">
-      <h5>Company</h5>
-      <ul>
-        <li><a href="#">About Us</a></li>
-        <li><a href="#">Our Work</a></li>
-        <li><a href="#">Careers</a></li>
-        <li><a href="#">Blog</a></li>
-        <li><a href="#">Contact</a></li>
+
+    <div class="footer__col">
+      <h5 class="footer__heading">Company</h5>
+      <ul class="footer__links">
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="contact.html">Contact & Support</a></li>
       </ul>
     </div>
-    <div class="footer-col">
-      <h5>Connect</h5>
-      <ul>
-        <li><a href="/cdn-cgi/l/email-protection#2e464b4242416e4a5a5c4b404a5d4b5c58474d4b5d004d4143">📧 <span class="__cf_email__" data-cfemail="90f8f5fcfcffd0f4e4e2f5fef4e3f5e2e6f9f3f5e3bef3fffd">[email&#160;protected]</span></a></li>
-        <li><a href="#">💬 WhatsApp Us</a></li>
+
+    <div class="footer__col">
+      <h5 class="footer__heading">Connect</h5>
+      <ul class="footer__links">
+        <li><a href="mailto:hello@dtrendservices.com">📧 Email Us</a></li>
+        <li><a href="#">💬 WhatsApp</a></li>
         <li><a href="#">🐦 Twitter</a></li>
         <li><a href="#">💼 LinkedIn</a></li>
         <li><a href="#">📸 Instagram</a></li>
       </ul>
     </div>
   </div>
-  <div class="footer-bottom">
+
+  <div class="footer__bottom">
     <span>© 2026 DTrend Services. All rights reserved.</span>
-    <span>Made with 💙 for the global public · <a href="#">Privacy Policy</a> · <a href="#">Terms</a></span>
+    <span>
+      Made with 💜 for users worldwide ·
+      <a href="#">Privacy Policy</a> ·
+      <a href="#">Terms</a>
+    </span>
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  // Intersection Observer for fade-up
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 100);
-      }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+<!-- Cookie Consent -->
+<div class="cookie-banner" role="alert">
+  <p class="cookie-banner__text">We use essential cookies to make our site work. We'd also like to use analytics cookies to understand how you use our apps directory.</p>
+  <div class="cookie-banner__actions">
+    <button class="btn btn-sm btn-ghost" data-action="reject">Decline</button>
+    <button class="btn btn-sm btn-primary" data-action="accept">Accept</button>
+  </div>
+</div>
 
-  // CTA
-  function handleCTA() {
+<script src="main.js"></script>
+<script>
+  function handleNewsletter() {
     const val = document.getElementById('emailInput').value;
-    if (val) alert('Thanks! We\'ll reach out to ' + val + ' within 24 hours. 🚀');
+    if (val && val.includes('@')) {
+      window.DTrend.Toast.show('Subscribed! 🎉', "We'll keep you posted on new apps.", '📧');
+      document.getElementById('emailInput').value = '';
+    } else {
+      window.DTrend.Toast.show('Oops!', 'Please enter a valid email address.', '⚠️');
+    }
   }
 </script>
 </body>

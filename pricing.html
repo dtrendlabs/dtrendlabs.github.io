@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pricing – DTrend Services</title>
+  <meta name="description" content="Explore pricing for DTrend Services apps. Many are free, some offer premium features. Find the right plan for you." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="components.css" />
+  <link rel="stylesheet" href="animations.css" />
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<!-- NAVBAR -->
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+  <a href="index.html" class="navbar__logo"><span class="navbar__logo-mark">D</span><span class="navbar__logo-text">TREND</span></a>
+  <div class="navbar__nav">
+    <a href="index.html" class="navbar__link nav-underline">Home</a>
+    <a href="apps.html" class="navbar__link nav-underline">Apps</a>
+    <a href="pricing.html" class="navbar__link nav-underline active">Pricing</a>
+    <a href="about.html" class="navbar__link nav-underline">About</a>
+    <a href="contact.html" class="navbar__link nav-underline">Contact</a>
+  </div>
+  <div class="navbar__actions">
+    <button class="theme-toggle" aria-label="Toggle theme">🌙</button>
+  </div>
+  <button class="navbar__burger" aria-label="Open menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="navbar__mobile"><a href="index.html">Home</a><a href="apps.html">Apps</a><a href="pricing.html">Pricing</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="faq.html">FAQ</a></div>
+
+<main id="main">
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="page-header__inner">
+      <div class="breadcrumbs">
+        <a href="index.html">Home</a>
+        <span class="breadcrumbs__sep">›</span>
+        <span>Pricing</span>
+      </div>
+      <span class="section-label hero-enter">// Simple Pricing</span>
+      <h1 class="hero-enter hero-enter--delay-1">Fair Pricing, <span class="text-gradient">No Surprises</span></h1>
+      <p class="section-sub hero-enter hero-enter--delay-2">Most of our apps are free. For premium features, choose a plan that works for you. Cancel anytime.</p>
+    </div>
+  </div>
+
+  <!-- PRICING TOGGLE -->
+  <section class="section" style="padding-top:var(--sp-4)">
+    <div class="pricing-toggle reveal">
+      <span class="pricing-toggle__label active" data-period="monthly">Monthly</span>
+      <div class="pricing-toggle__switch" role="switch" aria-label="Toggle yearly pricing" tabindex="0"></div>
+      <span class="pricing-toggle__label" data-period="yearly">Yearly</span>
+      <span class="pricing-toggle__badge">Save 25%</span>
+    </div>
+
+    <!-- PRICING CARDS -->
+    <div class="grid grid-3 stagger-children" style="max-width:960px;margin:0 auto;align-items:start">
+
+      <!-- Free Tier -->
+      <div class="pricing-card reveal">
+        <div class="pricing-card__name">Free</div>
+        <div class="pricing-card__price">
+          $0 <span>/ forever</span>
+        </div>
+        <p class="pricing-card__desc">Access all our free apps with core features — no credit card needed.</p>
+        <div class="pricing-card__features">
+          <div class="pricing-card__feature">
+            <span class="pricing-card__feature-icon">✓</span>
+            All free apps (full access)
+          </div>
+          <div class="pricing-card__feature">
+            <span class="pricing-card__feature-icon">✓</span>
+            Core features included
+          </div>
+          <div class="pricing-card__feature">
+            <span class="pricing-card__feature-icon">✓</span>
+            Community support
+          </div>
+          <div class="pricing-card__feature">
+            <span class="pricing-card__feature-icon">✓</span>
+            Regular updates
+          </div>
+          <div class="pricing-card__feature" style="opacity:0.4">
+            <span class="pricing-card__feature-icon">✗</span>
+            Premium features
+          </div>
+          <div class="pricing-card__feature" style="opacity:0.4">
+            <span class="pricing-card__feature-icon">✗</span>
+            Priority support
+          </div>
+        </div>
+        <a href="apps.html" class="btn btn-secondary" style="width:100%">Get Started Free</a>
+      </div>
+
+      <!-- Pro Tier (Featured) -->
+      <div class="pricing-card pricing-card--featured reveal">
+        <div class="pricing-card__name">Pro</div>
+        <div class="pricing-card__price">
+          <span data-price-monthly="$4.99" data-price-yearly="$3.74">$4.99</span> <span>/ month</span>
+        </div>
+        <p class="pricing-card__desc">Unlock premium features across all our apps with one subscription.</p>
+        <div class="pricing-card__features">
+          <div class="pricing-card__feature">
+            <span class="pricing-card__feature-icon">✓</span>
+            Everything in Free
+          </div>
+          <div class="pricing-card__feature">
+            <span class="pricing-card__feature-icon">✓</span>
+            All premium features unlocked
+          </div>
+          <div class="pricing-card__feature">
+            <span class="pricing-card__feature-icon">✓</span>
+            Cloud sync & backup
+          </div>
+          <div class="pricing-card__feature">
+            <span class="pricing-card__feature-icon">✓</span>
+            Ad-free experience
+          </div>
+          <div class="pricing-card__feature">
+            <span class="pricing-card__feature-icon">✓</span>
+            Priority email support
+          </div>
+          <div class="pricing-card__feature">
+            <span class="pricing-card__feature-icon">✓</span>
+            Early access to new apps
+          </div>
+        </div>
+        <a href="#" class="btn btn-primary" style="width:100%">Upgrade to Pro →</a>
+      </div>
+
+      <!-- One-Time Purchase -->
+      <div class="pricing-card reveal">
+        <div class="pricing-card__name">One-Time</div>
+        <div class="pricing-card__price">
+          $1.99–$4.99
+        </div>
+        <p class="pricing-card__desc">Buy individual paid apps outright. Pay once, own forever — no subscription required.</p>
+        <div class="pricing-card__features">
+          <div class="pricing-card__feature">
+            <span class="pricing-card__feature-icon">✓</span>
+            Full app access (lifetime)
+          </div>
+          <div class="pricing-card__feature">
+            <span class="pricing-card__feature-icon">✓</span>
+            All future updates included
+          </div>
+          <div class="pricing-card__feature">
+            <span class="pricing-card__feature-icon">✓</span>
+            No subscription needed
+          </div>
+          <div class="pricing-card__feature">
+            <span class="pricing-card__feature-icon">✓</span>
+            Standard support
+          </div>
+          <div class="pricing-card__feature" style="opacity:0.4">
+            <span class="pricing-card__feature-icon">✗</span>
+            Cross-app bundle discount
+          </div>
+          <div class="pricing-card__feature" style="opacity:0.4">
+            <span class="pricing-card__feature-icon">✗</span>
+            Early access to new apps
+          </div>
+        </div>
+        <a href="apps.html" class="btn btn-secondary" style="width:100%">Browse Paid Apps</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- APP PRICING TABLE -->
+  <section class="section section--surface">
+    <div class="section-header reveal">
+      <span class="section-label">// Per-App Pricing</span>
+      <h2 class="section-title">Individual App Prices</h2>
+      <p class="section-sub">Here's what each app costs. Many are completely free with no hidden charges.</p>
+    </div>
+
+    <div style="max-width:700px;margin:0 auto;overflow-x:auto">
+      <table style="width:100%;border-collapse:collapse" class="reveal">
+        <thead>
+          <tr style="border-bottom:2px solid var(--color-border)">
+            <th style="text-align:left;padding:var(--sp-2);font-size:var(--fs-small);color:var(--color-text-muted);font-weight:600">App</th>
+            <th style="text-align:center;padding:var(--sp-2);font-size:var(--fs-small);color:var(--color-text-muted);font-weight:600">Base Price</th>
+            <th style="text-align:center;padding:var(--sp-2);font-size:var(--fs-small);color:var(--color-text-muted);font-weight:600">Premium</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--color-border)">
+            <td style="padding:var(--sp-2);display:flex;align-items:center;gap:var(--sp-1)"><span>📋</span> TaskFlow Pro</td>
+            <td style="padding:var(--sp-2);text-align:center"><span class="badge badge-success">Free</span></td>
+            <td style="padding:var(--sp-2);text-align:center;color:var(--color-text-muted);font-size:var(--fs-small)">Included in Pro</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--color-border)">
+            <td style="padding:var(--sp-2);display:flex;align-items:center;gap:var(--sp-1)"><span>💰</span> MoneyWise</td>
+            <td style="padding:var(--sp-2);text-align:center"><span class="badge badge-success">Free</span></td>
+            <td style="padding:var(--sp-2);text-align:center;color:var(--color-text-muted);font-size:var(--fs-small)">Included in Pro</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--color-border)">
+            <td style="padding:var(--sp-2);display:flex;align-items:center;gap:var(--sp-1)"><span>🏃</span> FitPulse</td>
+            <td style="padding:var(--sp-2);text-align:center"><span class="badge badge-success">Free</span></td>
+            <td style="padding:var(--sp-2);text-align:center;color:var(--color-text-muted);font-size:var(--fs-small)">Included in Pro</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--color-border)">
+            <td style="padding:var(--sp-2);display:flex;align-items:center;gap:var(--sp-1)"><span>🔒</span> VaultGuard</td>
+            <td style="padding:var(--sp-2);text-align:center"><span class="badge badge-accent">$2.99</span></td>
+            <td style="padding:var(--sp-2);text-align:center;color:var(--color-text-muted);font-size:var(--fs-small)">Included in Pro</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--color-border)">
+            <td style="padding:var(--sp-2);display:flex;align-items:center;gap:var(--sp-1)"><span>🎓</span> StudyBuddy</td>
+            <td style="padding:var(--sp-2);text-align:center"><span class="badge badge-success">Free</span></td>
+            <td style="padding:var(--sp-2);text-align:center;color:var(--color-text-muted);font-size:var(--fs-small)">Included in Pro</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--color-border)">
+            <td style="padding:var(--sp-2);display:flex;align-items:center;gap:var(--sp-1)"><span>📝</span> QuickNote</td>
+            <td style="padding:var(--sp-2);text-align:center"><span class="badge badge-success">Free</span></td>
+            <td style="padding:var(--sp-2);text-align:center;color:var(--color-text-muted);font-size:var(--fs-small)">Included in Pro</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--color-border)">
+            <td style="padding:var(--sp-2);display:flex;align-items:center;gap:var(--sp-1)"><span>🌦️</span> WeatherCast</td>
+            <td style="padding:var(--sp-2);text-align:center"><span class="badge badge-success">Free</span></td>
+            <td style="padding:var(--sp-2);text-align:center;color:var(--color-text-muted);font-size:var(--fs-small)">Included in Pro</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--color-border)">
+            <td style="padding:var(--sp-2);display:flex;align-items:center;gap:var(--sp-1)"><span>💬</span> ChatCircle</td>
+            <td style="padding:var(--sp-2);text-align:center"><span class="badge badge-success">Free</span></td>
+            <td style="padding:var(--sp-2);text-align:center;color:var(--color-text-muted);font-size:var(--fs-small)">Included in Pro</td>
+          </tr>
+          <tr>
+            <td style="padding:var(--sp-2);display:flex;align-items:center;gap:var(--sp-1)"><span>📊</span> BudgetPlanner</td>
+            <td style="padding:var(--sp-2);text-align:center"><span class="badge badge-accent">$1.99</span></td>
+            <td style="padding:var(--sp-2);text-align:center;color:var(--color-text-muted);font-size:var(--fs-small)">Included in Pro</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="section-header reveal">
+      <span class="section-label">// Questions</span>
+      <h2 class="section-title">Pricing FAQ</h2>
+    </div>
+
+    <div class="accordion reveal" data-single style="max-width:700px;margin:0 auto">
+      <div class="accordion__item">
+        <button class="accordion__trigger">
+          Can I use the free apps forever?
+          <span class="accordion__icon">+</span>
+        </button>
+        <div class="accordion__content">
+          <p class="accordion__body">Yes! All apps marked "Free" are free forever with full core functionality. No time limits, no forced upgrades. We believe core features should always be free.</p>
+        </div>
+      </div>
+      <div class="accordion__item">
+        <button class="accordion__trigger">
+          What does Pro include?
+          <span class="accordion__icon">+</span>
+        </button>
+        <div class="accordion__content">
+          <p class="accordion__body">The Pro subscription unlocks premium features across all our apps with a single payment — cloud sync, ad-free experience, advanced analytics in MoneyWise, custom themes, and priority support.</p>
+        </div>
+      </div>
+      <div class="accordion__item">
+        <button class="accordion__trigger">
+          Can I cancel my subscription anytime?
+          <span class="accordion__icon">+</span>
+        </button>
+        <div class="accordion__content">
+          <p class="accordion__body">Absolutely. You can cancel your Pro subscription at any time through Google Play. You'll keep access until the end of your billing period. No cancellation fees.</p>
+        </div>
+      </div>
+      <div class="accordion__item">
+        <button class="accordion__trigger">
+          Do one-time purchases include future updates?
+          <span class="accordion__icon">+</span>
+        </button>
+        <div class="accordion__content">
+          <p class="accordion__body">Yes! When you buy an app outright, you get all future updates and bug fixes forever. The only difference from Pro is you won't get cross-app premium features or priority support.</p>
+        </div>
+      </div>
+      <div class="accordion__item">
+        <button class="accordion__trigger">
+          Is there a refund policy?
+          <span class="accordion__icon">+</span>
+        </button>
+        <div class="accordion__content">
+          <p class="accordion__body">Google Play offers automatic refunds within 48 hours of purchase. After that, contact us at hello@dtrendservices.com and we'll work with you on a case-by-case basis.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer" role="contentinfo">
+  <div class="footer__grid">
+    <div class="footer__brand">
+      <a href="index.html" class="navbar__logo"><span class="navbar__logo-mark">D</span><span class="navbar__logo-text">TREND</span></a>
+      <p>Premium Android apps for users worldwide.</p>
+    </div>
+    <div class="footer__col"><h5 class="footer__heading">Apps</h5><ul class="footer__links"><li><a href="apps.html">All Apps</a></li><li><a href="pricing.html">Pricing</a></li></ul></div>
+    <div class="footer__col"><h5 class="footer__heading">Company</h5><ul class="footer__links"><li><a href="about.html">About</a></li><li><a href="faq.html">FAQ</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="footer__col"><h5 class="footer__heading">Connect</h5><ul class="footer__links"><li><a href="mailto:hello@dtrendservices.com">📧 Email</a></li><li><a href="#">💬 WhatsApp</a></li></ul></div>
+  </div>
+  <div class="footer__bottom"><span>© 2026 DTrend Services.</span><span><a href="#">Privacy</a> · <a href="#">Terms</a></span></div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact & Support – DTrend Services</title>
+  <meta name="description" content="Get in touch with DTrend Services. Report bugs, suggest features, or just say hello. We respond within 24 hours." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="components.css" />
+  <link rel="stylesheet" href="animations.css" />
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<!-- NAVBAR -->
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+  <a href="index.html" class="navbar__logo"><span class="navbar__logo-mark">D</span><span class="navbar__logo-text">TREND</span></a>
+  <div class="navbar__nav">
+    <a href="index.html" class="navbar__link nav-underline">Home</a>
+    <a href="apps.html" class="navbar__link nav-underline">Apps</a>
+    <a href="pricing.html" class="navbar__link nav-underline">Pricing</a>
+    <a href="about.html" class="navbar__link nav-underline">About</a>
+    <a href="contact.html" class="navbar__link nav-underline active">Contact</a>
+  </div>
+  <div class="navbar__actions">
+    <button class="theme-toggle" aria-label="Toggle theme">🌙</button>
+  </div>
+  <button class="navbar__burger" aria-label="Open menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="navbar__mobile"><a href="index.html">Home</a><a href="apps.html">Apps</a><a href="pricing.html">Pricing</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="faq.html">FAQ</a></div>
+
+<main id="main">
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="page-header__inner">
+      <div class="breadcrumbs">
+        <a href="index.html">Home</a>
+        <span class="breadcrumbs__sep">›</span>
+        <span>Contact</span>
+      </div>
+      <span class="section-label hero-enter">// Get in Touch</span>
+      <h1 class="hero-enter hero-enter--delay-1">We'd Love to <span class="text-gradient">Hear From You</span></h1>
+      <p class="section-sub hero-enter hero-enter--delay-2">Bug report, feature suggestion, or just want to say hi? We read every message and respond within 24 hours.</p>
+    </div>
+  </div>
+
+  <!-- CONTACT FORM (Multi-step) -->
+  <section class="section">
+    <div style="max-width:640px;margin:0 auto">
+
+      <div class="form-wizard reveal">
+        <!-- Progress -->
+        <div class="form-wizard__progress">
+          <div class="form-wizard__step-indicator active">1</div>
+          <div class="form-wizard__step-line"></div>
+          <div class="form-wizard__step-indicator">2</div>
+          <div class="form-wizard__step-line"></div>
+          <div class="form-wizard__step-indicator">3</div>
+        </div>
+
+        <!-- Step 1: Reason -->
+        <div class="form-wizard__panel active">
+          <h3 style="margin-bottom:var(--sp-1)">What can we help with?</h3>
+          <p style="color:var(--color-text-secondary);font-size:var(--fs-small);margin-bottom:var(--sp-3)">Select the option that best describes your reason for reaching out.</p>
+
+          <div class="option-grid">
+            <div class="option-card" data-value="bug">
+              <div class="option-card__icon">🐛</div>
+              <div class="option-card__label">Bug Report</div>
+            </div>
+            <div class="option-card" data-value="feature">
+              <div class="option-card__icon">💡</div>
+              <div class="option-card__label">Feature Request</div>
+            </div>
+            <div class="option-card" data-value="feedback">
+              <div class="option-card__icon">💬</div>
+              <div class="option-card__label">General Feedback</div>
+            </div>
+            <div class="option-card" data-value="billing">
+              <div class="option-card__icon">💳</div>
+              <div class="option-card__label">Billing / Refund</div>
+            </div>
+            <div class="option-card" data-value="partnership">
+              <div class="option-card__icon">🤝</div>
+              <div class="option-card__label">Partnership</div>
+            </div>
+            <div class="option-card" data-value="other">
+              <div class="option-card__icon">📩</div>
+              <div class="option-card__label">Something Else</div>
+            </div>
+          </div>
+
+          <div class="form-wizard__actions">
+            <div></div>
+            <button class="btn btn-primary" data-action="next">Next →</button>
+          </div>
+        </div>
+
+        <!-- Step 2: Which App -->
+        <div class="form-wizard__panel">
+          <h3 style="margin-bottom:var(--sp-1)">Which app is this about?</h3>
+          <p style="color:var(--color-text-secondary);font-size:var(--fs-small);margin-bottom:var(--sp-3)">Select the app, or choose "General" if it's not about a specific app.</p>
+
+          <div class="option-grid" style="grid-template-columns:repeat(auto-fit, minmax(140px, 1fr))">
+            <div class="option-card" data-value="taskflow">
+              <div class="option-card__icon">📋</div>
+              <div class="option-card__label">TaskFlow Pro</div>
+            </div>
+            <div class="option-card" data-value="moneywise">
+              <div class="option-card__icon">💰</div>
+              <div class="option-card__label">MoneyWise</div>
+            </div>
+            <div class="option-card" data-value="fitpulse">
+              <div class="option-card__icon">🏃</div>
+              <div class="option-card__label">FitPulse</div>
+            </div>
+            <div class="option-card" data-value="vaultguard">
+              <div class="option-card__icon">🔒</div>
+              <div class="option-card__label">VaultGuard</div>
+            </div>
+            <div class="option-card" data-value="studybuddy">
+              <div class="option-card__icon">🎓</div>
+              <div class="option-card__label">StudyBuddy</div>
+            </div>
+            <div class="option-card" data-value="general">
+              <div class="option-card__icon">🌐</div>
+              <div class="option-card__label">General</div>
+            </div>
+          </div>
+
+          <div class="form-wizard__actions">
+            <button class="btn btn-secondary" data-action="prev">← Back</button>
+            <button class="btn btn-primary" data-action="next">Next →</button>
+          </div>
+        </div>
+
+        <!-- Step 3: Details -->
+        <div class="form-wizard__panel">
+          <h3 style="margin-bottom:var(--sp-1)">Your Details</h3>
+          <p style="color:var(--color-text-secondary);font-size:var(--fs-small);margin-bottom:var(--sp-3)">Tell us more and we'll get back to you as soon as possible.</p>
+
+          <div style="display:grid;gap:var(--sp-2)">
+            <div>
+              <label style="font-size:var(--fs-small);font-weight:600;display:block;margin-bottom:6px">Name</label>
+              <input type="text" class="input" placeholder="Your name" aria-label="Name" />
+            </div>
+            <div>
+              <label style="font-size:var(--fs-small);font-weight:600;display:block;margin-bottom:6px">Email</label>
+              <input type="email" class="input" placeholder="you@example.com" aria-label="Email" />
+            </div>
+            <div>
+              <label style="font-size:var(--fs-small);font-weight:600;display:block;margin-bottom:6px">Message</label>
+              <textarea class="textarea" placeholder="Describe your issue, idea, or feedback in detail..." aria-label="Message"></textarea>
+            </div>
+          </div>
+
+          <div class="form-wizard__actions">
+            <button class="btn btn-secondary" data-action="prev">← Back</button>
+            <button class="btn btn-primary" data-action="submit">Send Message ✉️</button>
+          </div>
+        </div>
+
+        <!-- Success State -->
+        <div class="form-wizard__success" style="display:none;text-align:center;padding:var(--sp-6) 0">
+          <div style="font-size:4rem;margin-bottom:var(--sp-3)">
+            <svg width="80" height="80" viewBox="0 0 80 80" fill="none" style="margin:0 auto">
+              <circle cx="40" cy="40" r="38" stroke="var(--color-success)" stroke-width="3" fill="rgba(46,204,113,0.1)"/>
+              <path d="M24 40 L35 51 L56 30" stroke="var(--color-success)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="check-draw"/>
+            </svg>
+          </div>
+          <h2 style="margin-bottom:var(--sp-1)">Message Sent!</h2>
+          <p style="color:var(--color-text-secondary);max-width:400px;margin:0 auto var(--sp-4)">Thanks for reaching out. We'll review your message and get back to you within 24 hours.</p>
+          <a href="index.html" class="btn btn-secondary">← Back to Home</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ALTERNATIVE CONTACT METHODS -->
+  <section class="section section--surface">
+    <div class="section-header reveal">
+      <span class="section-label">// Other Ways to Reach Us</span>
+      <h2 class="section-title">Prefer Something Else?</h2>
+    </div>
+
+    <div class="grid grid-3 stagger-children" style="max-width:900px;margin:0 auto">
+      <div class="feature-card reveal" style="text-align:center">
+        <div class="feature-card__icon" style="margin:0 auto var(--sp-2)">📧</div>
+        <h3 class="feature-card__title">Email</h3>
+        <p class="feature-card__desc">Drop us a line anytime at<br/><a href="mailto:hello@dtrendservices.com" style="color:var(--color-primary);font-weight:600">hello@dtrendservices.com</a></p>
+      </div>
+
+      <div class="feature-card reveal" style="text-align:center">
+        <div class="feature-card__icon" style="margin:0 auto var(--sp-2)">💬</div>
+        <h3 class="feature-card__title">WhatsApp</h3>
+        <p class="feature-card__desc">Chat with us directly for quick questions or support.</p>
+      </div>
+
+      <div class="feature-card reveal" style="text-align:center">
+        <div class="feature-card__icon" style="margin:0 auto var(--sp-2)">🐦</div>
+        <h3 class="feature-card__title">Social Media</h3>
+        <p class="feature-card__desc">Follow us on Twitter and Instagram for updates and sneak peeks.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer" role="contentinfo">
+  <div class="footer__grid">
+    <div class="footer__brand">
+      <a href="index.html" class="navbar__logo"><span class="navbar__logo-mark">D</span><span class="navbar__logo-text">TREND</span></a>
+      <p>Premium Android apps for users worldwide.</p>
+    </div>
+    <div class="footer__col"><h5 class="footer__heading">Apps</h5><ul class="footer__links"><li><a href="apps.html">All Apps</a></li><li><a href="pricing.html">Pricing</a></li></ul></div>
+    <div class="footer__col"><h5 class="footer__heading">Company</h5><ul class="footer__links"><li><a href="about.html">About</a></li><li><a href="faq.html">FAQ</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="footer__col"><h5 class="footer__heading">Connect</h5><ul class="footer__links"><li><a href="mailto:hello@dtrendservices.com">📧 Email</a></li><li><a href="#">💬 WhatsApp</a></li></ul></div>
+  </div>
+  <div class="footer__bottom"><span>© 2026 DTrend Services.</span><span><a href="#">Privacy</a> · <a href="#">Terms</a></span></div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
