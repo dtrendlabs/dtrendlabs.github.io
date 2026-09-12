@@ -559,3 +559,56 @@ ul, ol { list-style: none; }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-primary);
 }
+
+/* Privacy and Terms Pages */
+.privacy-terms-page {
+  padding-top: var(--nav-height); /* Offset for fixed navbar */
+  max-width: 800px;
+  margin: 0 auto;
+  padding-left: var(--content-px);
+  padding-right: var(--content-px);
+}
+
+.privacy-terms-page .section-header {
+  text-align: left;
+  margin-bottom: var(--sp-6);
+}
+
+.privacy-terms-page .section-title {
+  font-size: var(--fs-h2);
+  margin-bottom: var(--sp-2);
+}
+
+.privacy-terms-page .section-sub {
+  color: var(--color-text-muted);
+  font-size: var(--fs-small);
+}
+
+.privacy-terms-page .text-content h2 {
+  font-size: var(--fs-h3);
+  margin-top: var(--sp-6);
+  margin-bottom: var(--sp-3);
+  color: var(--color-text-primary);
+}
+
+.privacy-terms-page .text-content h3 {
+  font-size: var(--fs-h4);
+  margin-top: var(--sp-4);
+  margin-bottom: var(--sp-2);
+  color: var(--color-text-primary);
+}
+
+.privacy-terms-page .text-content p {
+  margin-bottom: var(--sp-3);
+}
+
+.privacy-terms-page .text-content ul {
+  list-style: disc;
+  margin-left: var(--sp-4);
+  margin-bottom: var(--sp-3);
+  color: var(--color-text-secondary);
+}
+
+.privacy-terms-page .text-content ul li {
+  margin-bottom: var(--sp-1);
+}
