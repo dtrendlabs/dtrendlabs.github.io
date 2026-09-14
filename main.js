@@ -450,6 +450,31 @@
     }
   };
 
+  // ── APP CARD NAVIGATION ──
+  const AppCardNav = {
+    init() {
+      document.querySelectorAll('.app-card[data-href]').forEach(card => {
+        card.addEventListener('click', (e) => {
+          if (e.target.closest('a, button')) return;
+          const href = card.getAttribute('data-href');
+          if (href) {
+            window.location.href = href;
+          }
+        });
+
+        card.addEventListener('keydown', (e) => {
+          if ((e.key === 'Enter' || e.key === ' ') && !e.target.closest('a, button')) {
+            e.preventDefault();
+            const href = card.getAttribute('data-href');
+            if (href) {
+              window.location.href = href;
+            }
+          }
+        });
+      });
+    }
+  };
+
   // ── INITIALIZE ALL ──
   document.addEventListener('DOMContentLoaded', () => {
     ThemeManager.init();
@@ -463,6 +488,7 @@
     CookieConsent.init();
     MagneticHover.init();
     SmoothScroll.init();
+    AppCardNav.init();
   });
 
 })();

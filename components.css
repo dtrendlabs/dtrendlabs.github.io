@@ -153,9 +153,11 @@
 .navbar__burger.open span:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
 }
+
 .navbar__burger.open span:nth-child(2) {
   opacity: 0;
 }
+
 .navbar__burger.open span:nth-child(3) {
   transform: rotate(-45deg) translate(5px, -5px);
 }
@@ -192,8 +194,13 @@
 }
 
 @media (max-width: 900px) {
-  .navbar__nav { display: none; }
-  .navbar__burger { display: block; }
+  .navbar__nav {
+    display: none;
+  }
+
+  .navbar__burger {
+    display: block;
+  }
 }
 
 
@@ -266,11 +273,20 @@
 }
 
 @keyframes pulse-dot {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
 }
 
-.hero h1 { margin-bottom: var(--sp-3); }
+.hero h1 {
+  margin-bottom: var(--sp-3);
+}
 
 .hero__sub {
   font-size: 1.1rem;
@@ -333,8 +349,15 @@
 }
 
 @keyframes phone-float {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-16px) rotate(1deg); }
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-16px) rotate(1deg);
+  }
 }
 
 .phone-notch {
@@ -367,7 +390,9 @@
   border-bottom: 1px solid var(--color-border);
 }
 
-.phone-content { padding: 12px 14px; }
+.phone-content {
+  padding: 12px 14px;
+}
 
 .phone-card-mock {
   background: rgba(108, 92, 231, 0.06);
@@ -418,7 +443,9 @@
 }
 
 @media (max-width: 1100px) {
-  .hero__phone { display: none; }
+  .hero__phone {
+    display: none;
+  }
 }
 
 
@@ -516,6 +543,53 @@
   color: var(--color-success);
 }
 
+.app-card[data-href] {
+  cursor: pointer;
+}
+
+.app-card__title-link {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.app-card__title-link:hover {
+  color: var(--color-primary);
+}
+
+.app-card__body--extended {
+  padding-bottom: var(--sp-1);
+}
+
+.app-card__legal {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-top: var(--sp-2);
+  font-size: var(--fs-small);
+}
+
+.app-card__legal-link {
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: color var(--transition-fast);
+  position: relative;
+  z-index: 2;
+}
+
+.app-card__legal-link:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+.app-card__legal-sep {
+  color: var(--color-text-muted);
+  opacity: 0.4;
+  font-size: 0.8rem;
+}
+
 
 /* ══════════════════════════
    SERVICE / FEATURE CARDS
@@ -600,8 +674,13 @@
 }
 
 @keyframes marquee-scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 .marquee__item {
@@ -1084,8 +1163,15 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .form-wizard__actions {
